@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Türk Hava Yolları – AI Chatbot</title>
+  <link rel="icon" href="/img/mini-logo.jpeg" type="image/jpeg" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div id="app-loading" class="app-loading" aria-live="polite">
+    <div class="app-loading-inner">
+      <div class="app-loading-spinner"></div>
+      <p class="app-loading-text">Yükleniyor, chatbot hazırlanıyor…</p>
+    </div>
+  </div>
+  <div id="author-overlay" class="author-overlay hidden" aria-hidden="true">
+    <div class="author-popup">
+      <h3 class="author-name">Orkun Şefik</h3>
+      <p class="author-role">AI Engineer</p>
+      <div class="author-links">
+        <a href="https://www.linkedin.com/in/orkunsefik/" id="author-linkedin" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://orkunsefik.dev" id="author-website" target="_blank" rel="noopener">Kişisel Web</a>
+        <a href="https://github.com/sefkk" id="author-github" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <button type="button" class="author-close btn-secondary" id="author-close">Kapat</button>
+    </div>
+  </div>
+  <div id="disclaimer-overlay" class="disclaimer-overlay hidden" aria-hidden="true">
+    <div class="disclaimer-popup">
+      <p class="disclaimer-text">Bu sayfa hiçbir şekilde Türk Hava Yolları'nı taklit etme, reklamını yapma, yerine geçme veya temsil etme amacı taşımamaktadır. Sadece demo amaçlı, konsepti göstermek üzere <strong>Orkun Şefik</strong> tarafından hazırlanmıştır.</p>
+      <div class="disclaimer-links">
+        <a href="https://www.linkedin.com/in/orkunsefik/" id="disclaimer-linkedin" target="_blank" rel="noopener">Linkedin</a>
+        <a href="https://orkunsefik.dev" id="disclaimer-website" target="_blank" rel="noopener">Personal Website</a>
+        <a href="https://github.com/sefkk" id="disclaimer-github" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <button type="button" class="disclaimer-btn" id="disclaimer-close">Tamam</button>
+    </div>
+  </div>
+  <header class="header">
+    <div class="header-inner">
+      <a href="/" id="logo-link" class="logo-link" title="Ana sayfaya dön">
+        <img src="/img/name-logo.png" alt="Türk Hava Yolları" class="logo-img" />
+      </a>
+      <nav class="nav">
+        <a href="#" data-page="home" class="nav-link active">Bilet Al</a>
+        <a href="#" data-page="my-tickets" class="nav-link">Biletlerim</a>
+        <button type="button" class="nav-link nav-link-author" id="nav-author" aria-label="Orkun Şefik – Benimle ilgili bilgiler">Orkun Şefik</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main" id="main-booking">
+    <section class="hero" id="hero-booking">
+      <h1>Bilet Rezervasyonu</h1>
+      <p class="hero-sub">Gidiş-dönüş veya tek yön uçuş arayın</p>
+    </section>
+
+    <section class="booking-card" id="booking-card">
+      <div class="tabs">
+        <button type="button" class="tab active" data-trip="roundtrip">Gidiş - Dönüş</button>
+        <button type="button" class="tab" data-trip="oneway">Tek Yön</button>
+      </div>
+      <div class="form-row">
+        <div class="field field-autocomplete">
+          <label>Nereden</label>
+          <div class="autocomplete-wrap">
+            <input type="text" id="input-from" class="input" placeholder="Şehir veya kod (örn. İstanbul, IST)" autocomplete="off" />
+            <div id="suggestions-from" class="autocomplete-list hidden" role="listbox"></div>
+          </div>
+        </div>
+        <div class="field field-autocomplete">
+          <label>Nereye</label>
+          <div class="autocomplete-wrap">
+            <input type="text" id="input-to" class="input" placeholder="Şehir veya kod (örn. Ankara, ESB)" autocomplete="off" />
+            <div id="suggestions-to" class="autocomplete-list hidden" role="listbox"></div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Gidiş</label>
+          <input type="date" id="input-departure-date" class="input" min="2026-03-09" value="2026-03-09" />
+        </div>
+        <div class="field" id="field-return">
+          <label>Dönüş</label>
+          <input type="date" id="input-return-date" class="input" min="2026-03-09" value="2026-03-12" />
+        </div>
+        <div class="field">
+          <label>Yolcu</label>
+          <select id="input-passengers" class="input">
+            <option value="1">1 Yolcu, Ekonomi</option>
+            <option value="2">2 Yolcu, Ekonomi</option>
+          </select>
+        </div>
+      </div>
+      <button type="button" class="btn-primary" id="btn-search">Uçuş Ara</button>
+    </section>
+
+    <section class="page-section hidden" id="page-flight-list" data-page="flight-list">
+      <h2 id="flight-list-title">Gidiş uçuşu seçin</h2>
+      <div class="flight-list" id="flight-list-container"></div>
+      <button type="button" class="btn-secondary" id="btn-back-search">Geri</button>
+    </section>
+
+    <section class="page-section hidden" id="page-passenger" data-page="passenger-info">
+      <h2>Yolcu Bilgileri</h2>
+      <div class="form-card" id="passenger-fields"></div>
+      <button type="button" class="btn-primary" id="btn-to-baggage">Devam</button>
+    </section>
+
+    <section class="page-section hidden" id="page-baggage-seat" data-page="baggage-seat">
+      <h2>Bagaj Hakkı ve Koltuk Seçimi</h2>
+      <div class="summary-box">
+        <p><strong>Ekonomi kabin bagajı:</strong> 1 parça, max 8 kg (55x40x23 cm). Ek kayıtlı bagaj seçebilirsiniz.</p>
+      </div>
+      <div class="baggage-seat-leg form-card">
+        <p class="baggage-seat-leg-label">Gidiş uçuşu</p>
+        <div class="field">
+          <label>Bagaj</label>
+          <select id="baggage-option" class="input">
+            <option value="cabin">Sadece kabin bagajı (8 kg)</option>
+            <option value="15kg">+ 15 kg kayıtlı bagaj</option>
+            <option value="20kg">+ 20 kg kayıtlı bagaj</option>
+            <option value="25kg">+ 25 kg kayıtlı bagaj</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Koltuk tercihi</label>
+          <select id="seat-preference" class="input">
+            <option value="">Seçmeyebilirsiniz</option>
+            <option value="window">Pencere</option>
+            <option value="aisle">Koridor</option>
+            <option value="middle">Orta</option>
+          </select>
+        </div>
+      </div>
+      <div class="baggage-seat-leg form-card baggage-seat-return-wrap hidden" id="baggage-seat-return-wrap">
+        <p class="baggage-seat-leg-label">Dönüş uçuşu</p>
+        <div class="field">
+          <label>Bagaj</label>
+          <select id="baggage-option-return" class="input">
+            <option value="cabin">Sadece kabin bagajı (8 kg)</option>
+            <option value="15kg">+ 15 kg kayıtlı bagaj</option>
+            <option value="20kg">+ 20 kg kayıtlı bagaj</option>
+            <option value="25kg">+ 25 kg kayıtlı bagaj</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Koltuk tercihi</label>
+          <select id="seat-preference-return" class="input">
+            <option value="">Seçmeyebilirsiniz</option>
+            <option value="window">Pencere</option>
+            <option value="aisle">Koridor</option>
+            <option value="middle">Orta</option>
+          </select>
+        </div>
+      </div>
+      <button type="button" class="btn-primary" id="btn-to-special">Devam</button>
+    </section>
+
+    <section class="page-section hidden" id="page-special-needs" data-page="special-needs">
+      <h2>Özel İhtiyaçlar</h2>
+      <div class="form-card">
+        <div class="field">
+          <label>Özel istek veya ihtiyaç (isteğe bağlı)</label>
+          <textarea id="special-needs-input" class="input" rows="3" placeholder="Örn: tekerlekli sandalye, tıbbi destek, özel yemek..."></textarea>
+        </div>
+      </div>
+      <button type="button" class="btn-primary" id="btn-to-lastcheck">Devam</button>
+    </section>
+
+    <section class="page-section hidden" id="page-lastcheck" data-page="lastcheck">
+      <h2>Son Kontrol</h2>
+      <div class="summary-box" id="lastcheck-summary"></div>
+      <button type="button" class="btn-primary" id="btn-to-payment">Ödemeye Geç (Mock-up)</button>
+    </section>
+
+    <section class="page-section hidden" id="page-payment" data-page="payment">
+      <h2>Ödeme</h2>
+      <div class="summary-box" id="payment-summary"></div>
+      <p class="payment-mock-note">Bu bir mock-up olduğu için burada sadece bir tuş var — <strong>«Ödeme yap»</strong> butonuna bastığınız an onay sayfasına gideceksiniz.</p>
+      <button type="button" class="btn-primary" id="btn-pay">Ödeme yap</button>
+    </section>
+
+    <section class="page-section hidden" id="page-confirmation" data-page="confirmation">
+      <h2>Bilet Onayı</h2>
+      <div class="confirmation-box" id="confirmation-content"></div>
+      <button type="button" class="btn-primary" id="btn-back-home">Yeni Rezervasyon</button>
+    </section>
+  </main>
+
+  <main class="main hidden" id="main-my-tickets">
+    <section class="page-section" id="page-my-tickets" data-page="my-tickets">
+      <h1>Biletlerim</h1>
+      <div id="my-tickets-list"></div>
+      <div id="delete-ticket-modal" class="ticket-delete-modal hidden" aria-hidden="true">
+        <div class="ticket-delete-modal-inner">
+          <p class="ticket-delete-modal-text">Bileti silmek istediğinize emin misiniz?</p>
+          <div class="ticket-delete-modal-actions">
+            <button type="button" class="btn-delete-cancel" id="delete-ticket-cancel">İptal</button>
+            <button type="button" class="btn-delete-confirm" id="delete-ticket-confirm">Sil</button>
+          </div>
+        </div>
+      </div>
+      <div id="ticket-edit-overlay" class="ticket-edit-overlay hidden">
+        <div class="ticket-edit-panel">
+          <h3>Biletimi düzenle</h3>
+          <p class="ticket-edit-pnr" id="ticket-edit-pnr"></p>
+          <div class="form-card">
+            <div class="field">
+              <label>Bagaj</label>
+              <select id="ticket-edit-baggage" class="input">
+                <option value="cabin">Sadece kabin bagajı (8 kg)</option>
+                <option value="15kg">+ 15 kg kayıtlı bagaj</option>
+                <option value="20kg">+ 20 kg kayıtlı bagaj</option>
+                <option value="25kg">+ 25 kg kayıtlı bagaj</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Koltuk tercihi</label>
+              <select id="ticket-edit-seat" class="input">
+                <option value="">Seçmeyebilirsiniz</option>
+                <option value="window">Pencere</option>
+                <option value="aisle">Koridor</option>
+                <option value="middle">Orta</option>
+              </select>
+            </div>
+            <div class="field ticket-edit-return-wrap hidden" id="ticket-edit-baggage-return-wrap">
+              <p class="baggage-seat-leg-label">Dönüş uçuşu</p>
+              <label>Bagaj (dönüş)</label>
+              <select id="ticket-edit-baggage-return" class="input">
+                <option value="cabin">Sadece kabin bagajı (8 kg)</option>
+                <option value="15kg">+ 15 kg kayıtlı bagaj</option>
+                <option value="20kg">+ 20 kg kayıtlı bagaj</option>
+                <option value="25kg">+ 25 kg kayıtlı bagaj</option>
+              </select>
+            </div>
+            <div class="field ticket-edit-return-wrap hidden" id="ticket-edit-seat-return-wrap">
+              <label>Koltuk tercihi (dönüş)</label>
+              <select id="ticket-edit-seat-return" class="input">
+                <option value="">Seçmeyebilirsiniz</option>
+                <option value="window">Pencere</option>
+                <option value="aisle">Koridor</option>
+                <option value="middle">Orta</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Özel ihtiyaç (isteğe bağlı)</label>
+              <textarea id="ticket-edit-special" class="input" rows="3" placeholder="Örn: tekerlekli sandalye, özel yemek..."></textarea>
+            </div>
+          </div>
+          <div class="ticket-edit-actions">
+            <button type="button" class="btn-secondary" id="ticket-edit-cancel">İptal</button>
+            <button type="button" class="btn-primary" id="ticket-edit-save">Kaydet</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="booking-total-bar hidden" id="booking-total-bar" aria-live="polite">
+    <span class="booking-total-label">Toplam:</span>
+    <span class="booking-total-amount" id="booking-total-amount">0</span> ₺
+  </div>
+
+  <div class="chat-widget" id="chat-widget">
+    <button type="button" class="chat-toggle" id="chat-toggle" aria-label="Yardım aç/kapa">
+      <span class="chat-toggle-icon">?</span>
+      <span class="chat-toggle-label">Yardım</span>
+    </button>
+    <div class="chat-panel hidden" id="chat-panel">
+      <div class="chat-resize-handle" id="chat-resize-handle" aria-label="Boyutu değiştir"></div>
+      <div class="chat-header">
+        <span>THY Yardım</span>
+        <button type="button" class="chat-close" id="chat-close" aria-label="Kapat">×</button>
+      </div>
+      <div class="chat-messages" id="chat-messages"></div>
+      <div class="chat-input-wrap">
+        <input type="text" class="chat-input" id="chat-input" placeholder="Sorunuzu yazın..." />
+        <button type="button" class="chat-send" id="chat-send">Gönder</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/config.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

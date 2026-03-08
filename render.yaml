@@ -1,0 +1,19 @@
+# Render Blueprint: Backend (FastAPI + RAG)
+# Repo'yu Render'a bağlayıp bu dosyayla servisi oluşturun.
+services:
+  - type: web
+    name: thy-rag-api
+    runtime: python
+    region: frankfurt
+    buildCommand: pip install --no-cache-dir -r backend/requirements.txt
+    startCommand: PYTHONPATH=backend uvicorn app:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: DATA_DIR
+        value: data
+      - key: PYTHONUNBUFFERED
+        value: 1
+    healthCheckPath: /api/health

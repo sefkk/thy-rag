@@ -1,0 +1,27 @@
+﻿1. BÖLÜM: Uçuş İptalleri ve Yolcu Hakları
+1.1. İptal Durumunda Seçenekler
+* İade: Yolcu, bilet ücretinin tamamının veya kullanılmamış kısımlarının iadesini talep edebilir.
+* Güzergah Değişikliği: Yolcu, en kısa sürede veya uygun olduğu daha sonraki bir tarihte, son varış yerine ücretsiz değiştirilme hakkına sahiptir.
+* Tazminat: Uçuş iptali bilgisi yolcuya uçuş saatinden en az 14 gün önce verilmemişse, mesafe kriterlerine göre yolcu tazminat hakkı kazanabilir. Ancak, "mücbir sebepler" (hava muhalefeti, güvenlik riskleri vb.) bu kapsama girmez.
+2. BÖLÜM: Uçuş Gecikmeleri (Delay)
+2.1. Hizmet ve Destek Yükümlülüğü
+* 2 - 4 Saat Gecikmeler: Yolculara makul ölçüde sıcak/soğuk içecek ikramı sağlanır.
+* 4 - 5 Saat Üzeri Gecikmeler: Yolculara günün saatine göre kahvaltı, öğle veya akşam yemeği verilir.
+* Konaklama: Uçuşun bir sonraki güne sarkması durumunda, yolcunun otel konaklaması ve havalimanı-otel arasındaki ulaşım THY tarafından ücretsiz sağlanır.
+* İletişim: Yolculara 2 adet telefon görüşmesi, e-posta veya faks imkanı tanınır.
+3. BÖLÜM: Fazla Satış (Overbooking) ve Feragat
+3.1. Gönüllü Feragat (Denied Boarding)
+* Tevşik: Eğer uçakta yer yoksa (fazla satış), THY önce "gönüllü" yolcular arar.
+* Haklar: Gönüllü olan yolculara; nakit tazminat, ücretsiz bilet veya Miles&Smiles mili gibi teşvikler sunulur.
+* Reddedilme: Gönüllü bulunamaması durumunda, binişi reddedilen yolculara yönetmelik gereği belirlenen "tazminat ödemesi" (uçuş mesafesine göre değişen tutarlarda) yapılır.
+4. BÖLÜM: Tazminat Kapsamı ve İstisnalar
+4.1. Tazminat Tutarları (SHY-YOLCU Standardı)
+* İç Hat: Belirlenen sabit tutarlarda tazminat.
+* Dış Hat (Mesafe Bazlı):
+   * 1500 km'ye kadar uçuşlar.
+   * 1500 - 3500 km arası uçuşlar.
+   * 3500 km ve üzeri uçuşlar.
+* İstisnalar:
+   * Mücbir Sebepler: Hava durumu, siyasi istikrarsızlık, grev veya güvenlik tehditleri gibi havayolunun kontrolü dışındaki durumlar tazminat yükümlülüğünü ortadan kaldırır.
+   * Teknik Arıza: Teknik arızanın uçuş güvenliğini doğrudan etkilediği durumlarda, havayolu bu durumu "olağan dışı" olarak raporlarsa tazminat ödememe hakkını kullanabilir (ancak iaşe ve konaklama hizmeti yine de verilir).
+*

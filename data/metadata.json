@@ -1,0 +1,42 @@
+{
+  "biletleme_kurallari.txt": {
+    "categories": ["ticketing", "booking", "cancellation", "refund_policy"],
+    "priority": "high",
+    "source_title": "Biletleme ve Ücret Sınıfları"
+  },
+  "bagaj_rehberi.txt": {
+    "categories": ["baggage", "prohibited_items", "special_equipment"],
+    "priority": "high",
+    "source_title": "Bagaj ve Kargo Rehberi"
+  },
+  "bilet-nasil-alinir.txt": {
+    "categories": ["ticketing", "booking", "how_to"],
+    "priority": "high",
+    "source_title": "Bilet Nasıl Alınır?"
+  },
+  "bilet-alma-sureci.txt": {
+    "categories": ["ticketing", "booking", "screens", "how_to"],
+    "priority": "high",
+    "source_title": "Bilet Alma Süreci ve Ekran Rehberi"
+  },
+  "iade-ve-degisiklik.txt": {
+    "categories": ["refund", "cancellation", "ticketing"],
+    "priority": "high",
+    "source_title": "İade ve Değişiklik Kuralları"
+  },
+  "ucus_oncesi_islemler.txt": {
+    "categories": ["check_in", "before_flight", "procedures"],
+    "priority": "medium",
+    "source_title": "Uçuş Öncesi İşlemler"
+  },
+  "miles_and_smiles.txt": {
+    "categories": ["miles_and_smiles", "loyalty_program", "status_benefits"],
+    "priority": "medium",
+    "source_title": "Miles&Smiles Teknik Rehber"
+  },
+  "yolcu_haklari.txt": {
+    "categories": ["legal", "compensation", "delay_cancellation", "rights"],
+    "priority": "high",
+    "source_title": "Yolcu Hakları (SHY-YOLCU)"
+  }
+}

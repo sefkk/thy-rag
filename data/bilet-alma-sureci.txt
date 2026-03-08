@@ -1,0 +1,11 @@
+Bilet alma süreci ve ekran rehberi. Hangi ekranda ne yapılır?
+Ana sayfa (Bilet Rezervasyonu): Nereden, Nereye, Gidiş ve Dönüş tarihi, Yolcu sayısı seçilir. «Uçuş Ara» butonuna basarak arama yapılır. Gidiş-Dönüş veya Tek Yön seçilebilir.
+Uçuş Seçimi sayfası: Listelenen uçuşların yanındaki «Seç» butonuna basarak uçuş seçilir. «Geri» ile arama formuna dönülür.
+Yolcu Bilgileri sayfası: Ad, soyad vb. alanlar doldurulur. «Devam» butonuna basarak Bagaj ve Koltuk sayfasına geçilir.
+Bagaj ve Koltuk Seçimi sayfası: Bagaj (sadece kabin, +15 kg, +20 kg, +25 kg) ve koltuk tercihi (Pencere, Koridor, Orta veya Seçmeyebilirsiniz) seçilir. «Devam» ile Özel İhtiyaçlar sayfasına geçilir.
+Özel İhtiyaçlar sayfası: İsteğe bağlı alan; tekerlekli sandalye, tıbbi destek, özel yemek yazılabilir. Spor eşyası (kayak, golf, spor malzemesi) taşıyacaksanız bu alana "spor malzemesi" veya "spor eşyası taşınacak" gibi kısaca yazabilirsiniz; ek bagaj için Bagaj ve Koltuk sayfasında ek kayıtlı bagaj seçeneğini kullanın. «Devam» ile Son Kontrol sayfasına geçilir.
+Son Kontrol sayfası: Rezervasyon özeti kontrol edilir. «Ödemeye Geç» butonuna basarak ödeme sayfasına gidilir.
+Ödeme sayfası: «Ödeme yap» butonuna basarak işlem tamamlanır ve bilet onay sayfasına gidilir.
+Bilet Onayı sayfası: Rezervasyon tamamlandı. «Yeni Rezervasyon» ile ana sayfaya dönülür.
+Biletlerim sayfası: Kayıtlı biletler listelenir. Süresi geçmemiş biletlerde «Biletimi düzenle» ile bagaj, koltuk ve özel ihtiyaç güncellenir. Yeni bilet almak için üst menüden «Bilet Al»a tıklanır.
+Bilet alırken takıldıysanız hangi ekranda olduğunuzu söyleyin; o ekranda yapmanız gereken adım bağlamda yazıyor.

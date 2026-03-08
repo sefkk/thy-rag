@@ -1,0 +1,36 @@
+﻿1. BÖLÜM: İç Hat Ücret Yapısı (Branded Fares)
+1.1. EcoFly (Temel Paket)
+* Bagaj Hakkı: Sadece 15 kg kayıtlı bagaj hakkı sunulur.
+* Koltuk Seçimi: Standart koltuk seçimi ücretlidir.
+* Değişiklik: Bilet üzerinde hiçbir değişiklik yapılamaz.
+* İade: Biletin baz ücreti iade edilmez; yalnızca havaalanı vergileri, uçuşa 12 saat kalana kadar talep edilebilir.
+* Mil Kazanımı: Miles&Smiles programı kapsamında standart mil kazandırır (özel bonus yoktur).
+1.2. ExtraFly (Avantajlı Paket)
+* Bagaj Hakkı: 20 kg kayıtlı bagaj hakkı sunulur.
+* Koltuk Seçimi: Standart koltuk seçimi ücretsizdir.
+* Mil Kazanımı: 250 statü mili bonusu kazandırır.
+* Değişiklik: Uçuşa 12 saat kalana kadar, yetkili acente veya online kanallar üzerinden "ceza bedeli + sınıf farkı" ödenerek yapılabilir.
+* İade: İade hakkı yoktur, ancak vergi iadesi yapılabilir.
+1.3. PrimeFly (Esnek Paket)
+* Bagaj Hakkı: 25 kg kayıtlı bagaj hakkı sunulur.
+* Koltuk Seçimi: Ücretsiz standart koltuk seçimi dahildir.
+* Değişiklik: Uçuşa 12 saat kalana kadar, ücret farkı oluşursa ödenmek koşuluyla ücretsiz değişiklik yapılabilir.
+* Erken Uçuş: Aynı gün içerisinde, daha erken saatteki uçuşlara ücretsiz geçiş hakkı (müsaitlik durumuna göre) tanınır.
+* İade: Uçuşa 12 saat kalana kadar kesintisiz iade hakkı bulunur.
+2. BÖLÜM: No-Show ve İptal Kuralları
+2.1. No-Show Tanımı ve Yaptırımları
+* Tanım: Yolcunun, uçuştan önce iptal/değişiklik bildirimi yapmaması ve uçuşa katılmaması durumudur.
+* Gidiş-Dönüş Kuralı: Gidiş uçuşunda No-Show olan yolcunun, aynı biletteki dönüş uçuşu sistem tarafından otomatik olarak iptal edilir (aksi talimat verilmedikçe).
+* İade Durumu: No-Show gerçekleştiğinde biletin baz ücreti tamamen yanar; sadece yakıt harcı (YQ) ve varsa havaalanı vergileri iade edilebilir.
+2.2. Açık Bilet (Open Ticket) Uygulaması
+* Geçerlilik: Bilet açığa alındığı günden itibaren 365 gün (1 yıl) boyunca geçerlidir.
+* Rezervasyon Yenileme: 1 yıl içerisinde kullanılmayan biletler, sistemden silinir ve hiçbir iade hakkı bırakmaz.
+* Ücret Farkı: Açık bilet yeni bir uçuşa aktarılırken, rezervasyon anındaki güncel tarife ile önceki bilet tutarı arasındaki fark, yolcudan "fark ücreti" olarak tahsil edilir.
+3. BÖLÜM: Dış Hat ve Interline (Ortak) Kurallar
+3.1. Interline ve Code-Share (Ortak Uçuşlar)
+* Kural Önceliği: Türk Hava Yolları'nın satışını yaptığı ancak başka bir havayolunun icra ettiği uçuşlarda (Code-share), o uçuşu gerçekleştiren havayolunun bagaj ve bilet kuralları önceliklidir.
+* Bilet Kısıtlamaları: Interline (birden fazla havayolu içeren) biletlerde, biletin en kısıtlayıcı kuralı biletin tamamı için geçerli sayılabilir.
+3.2. Vergiler ve Harçlar
+* İade Edilemez Tutarlar: Hizmet bedeli (Service Fee) gibi acente veya sistem üzerinden kesilen servis ücretleri, bilet iptal edilse dahi iade edilmez.
+* Yabancı Para Birimi: Yurt dışı çıkışlı biletlerde iadeler, biletin kesildiği para birimi cinsinden yapılır; kur farkından doğacak değişimler yolcunun sorumluluğundadır.
+*

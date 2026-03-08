@@ -1,0 +1,13 @@
+# Netlify: Frontend (statik site)
+# Build yok; frontend/ klasörü doğrudan yayınlanır.
+# Backend Render'da çalışıyorsa js/config.js içinde API_BASE'e Render URL'ini yazın.
+
+[build]
+  publish = "frontend"
+  command = ""
+
+# SPA benzeri: tüm yollar index'e yönlendir (isteğe bağlı)
+# [[redirects]]
+#   from = "/*"
+#   to = "/index.html"
+#   status = 200

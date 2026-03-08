@@ -1,0 +1,25 @@
+﻿1. BÖLÜM: Kayıtlı Bagaj (Check-in) Kuralları
+1.1. Parça ve Ağırlık Konseptleri
+* Parça Bagaj Konsepti (Piece Concept): ABD, Kanada, Güney Amerika ve bazı Afrika uçuşlarında uygulanır. Ekonomi sınıfında yolculara genellikle 23 kg’lık 2 parça bagaj hakkı tanınır. Business sınıfında ise bu hak 32 kg’lık 2 parçadır.
+* Ağırlık Konsepti (Weight Concept): Avrupa ve Asya uçuşlarının çoğunda geçerlidir. Toplam ağırlık sınırı (örneğin 20 kg veya 30 kg) esas alınır; parça sayısının önemi yoktur.
+* Fazla Bagaj (Excess Baggage):
+   * Satın Alma: Havaalanı kontuarında yapılan ödemeler en yüksek tarifeden ücretlendirilir.
+   * Online İndirim: THY mobil uygulaması veya web sitesi üzerinden, uçuştan en az 24 saat önce satın alınan ek bagaj haklarında %10 ile %20 arasında indirim uygulanır.
+2. BÖLÜM: Özel Ekipmanlar ve Spor Malzemeleri
+2.1. Spor Malzemeleri İstisnaları
+* Golf ve Kayak: Birçok dış hat noktasında, yolcuların ilk set golf veya kayak takımı "ücretsiz" bagaj hakkı kapsamında taşınır. Ancak bu malzemenin uçuştan önce sisteme "spor malzemesi" olarak işlenmesi zorunludur.
+* Bisiklet: Özel koruyucu kutusunda veya çantasında, gidonu sabitlenmiş ve pedalları çıkarılmış şekilde kabul edilir. Ayrı bir ücret tarifesine tabidir.
+* Dalış Ekipmanı: Sadece tüpü boşaltılmış (vanası açık) şekilde kabul edilir.
+2.2. Müzik Enstrümanları
+* Kabin İçi (Küçük): Toplam boyutları (en+boy+yükseklik) 118 cm'yi geçmeyen enstrümanlar (keman, flüt vb.) kabine, el bagajı hakkı dahilinde alınabilir.
+* Ekstra Koltuk (EXST): 118 cm'den büyük veya hassas olan enstrümanlar (çello, kontrbas vb.) için kabinde ayrı bir koltuk satın alınmalıdır. Bu koltuk için bilet fiyatı üzerinden özel ücretlendirme uygulanır.
+3. BÖLÜM: Tehlikeli Maddeler ve Kısıtlamalar
+3.1. Lityum Piller ve Elektronik
+* Yasak: Tüm lityum bataryalı cihazlar (powerbank, yedek şarj cihazı vb.) kesinlikle kayıtlı bagaja (uçağın altına) verilemez.
+* Zorunluluk: Bu cihazlar, kısa devre yapmayacak şekilde paketlenmiş olarak mutlaka "kabin bagajı" içerisinde taşınmalıdır.
+* Kapasite Sınırı: 100 Wh ile 160 Wh arasındaki piller sadece havayolu onayına tabidir. 160 Wh üzerindeki bataryalar uçuşa kabul edilmez.
+3.2. Sıvı Kısıtlamaları (Kabin İçi)
+* Konteyner Sınırı: Her bir kap maksimum 100 ml olmalıdır.
+* Poşetleme: Tüm sıvılar, 1 litreyi geçmeyen şeffaf, kilitli (zip-lock) bir plastik poşet içerisinde sunulmalıdır.
+* İstisna: Bebek maması ve tıbbi zorunluluk arz eden ilaçlar, uçuş süresince ihtiyaç duyulacak miktarda kısıtlamadan muaftır (doktor raporu ibraz edilmelidir).
+*

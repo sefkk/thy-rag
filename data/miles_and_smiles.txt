@@ -1,0 +1,29 @@
+﻿1. BÖLÜM: Statü Seviyeleri ve Avantajlar
+1.1. Classic ve Classic Plus
+* Classic: Üyelik başlangıç seviyesidir. Uçuşlardan mil kazanımı sağlar.
+* Classic Plus: 25.000 Statü Mili ile kazanılır. Star Alliance Silver statüsüne eşdeğerdir.
+   * Avantajlar: İç hat uçuşlarında Lounge kullanımı, öncelikli check-in ve ekstra bagaj hakkı.
+1.2. Elite ve Elite Plus
+* Elite: 40.000 Statü Mili ile kazanılır. Star Alliance Gold statüsüne eşdeğerdir.
+   * Avantajlar: Uluslararası uçuşlarda Lounge erişimi, ekstra bagaj hakkı, "Family Membership" (aile bireyleriyle mil havuzu) kurma yetkisi.
+* Elite Plus: 80.000 Statü Mili ile kazanılır.
+   * Avantajlar: Elite avantajlarına ek olarak; yılda iki kez ücretsiz sınıf yükseltme (upgrade) hakkı ve özel müşteri hizmetleri desteği.
+2. BÖLÜM: Mil Yönetimi ve Geçerlilik Kuralları
+2.1. Mil Geçerlilik Süresi (Expiry)
+* Kural: Miller, kazanıldığı takvim yılından itibaren 3. takvim yılının sonuna kadar geçerlidir (Örneğin; 2026'da kazanılan miller, 31 Aralık 2029'a kadar kullanılabilir).
+* Uzatma İmkanı: Süresi dolmak üzere olan miller, 1.000 mil başına 20 USD ücret ödenerek 3 yıl daha uzatılabilir.
+* Kullanım: Miller, ödül bilet düzenlenirken mutlaka "en eski tarihli" olanlardan düşer (First-in, First-out mantığı).
+2.2. Mil Birleştirme (Family Membership)
+* Kapsam: Sadece Elite ve Elite Plus üyeleri aile bireylerini (eş ve çocuk) sisteme ekleyerek milleri ortak bir havuzda toplayabilir.
+* Kısıt: Aile üyeleri kendi adlarına mil kazanmaya devam eder, ancak harcama yetkisi ana üyededir.
+3. BÖLÜM: Ödül Bilet ve Sınıf Yükseltme (Upgrade)
+3.1. Yer Garantili Ödül Bilet (Guaranteed Award Ticket)
+* Uygulama: Standart ödül biletlerin tükendiği durumlarda, normal biletleme mil değerinin üzerinde bir "ek mil" ödenerek, uçakta boş koltuk olduğu sürece ödül bilet alınmasını sağlar.
+* Kısıt: Sadece THY tarafından gerçekleştirilen uçuşlarda geçerlidir.
+3.2. Refakatçi Bileti (Companion Ticket)
+* Uygulama: Ana üyenin (Elite/Elite Plus) yanında seyahat eden kişi için, asıl biletin mil bedelinden daha düşük (genelde %50 indirimli) bir mil karşılığında bilet düzenlenmesidir.
+* Şart: Ana yolcu ve refakatçinin aynı uçuşta (PNR numaraları farklı olsa bile) seyahat etmesi zorunludur.
+3.3. Sınıf Yükseltme (Upgrade)
+* Süre: Uçuştan en az 24 saat önce, web sitesi veya mobil uygulama üzerinden talep edilmelidir.
+* Kural: Her bilet sınıfı "upgrade" edilebilir değildir (Promosyonel biletler bazen kapsam dışı tutulur).
+*

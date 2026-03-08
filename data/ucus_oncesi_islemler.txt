@@ -1,0 +1,28 @@
+﻿1. BÖLÜM: Check-in ve Havalimanı Zaman Çizelgesi
+1.1. Online ve Mobil Check-in
+* Başlangıç: Uçuştan 24 saat önce açılır.
+* Bitiş: Uçuştan 90 dakika önce kapanır.
+* Koltuk Seçimi: Check-in esnasında ücretsiz veya ücretli koltuk seçimi yapılabilir (Tarife sınıfına göre değişiklik gösterir).
+* Biniş Kartı: Mobil biniş kartı (QR kod) olan yolcular, bagajları yoksa doğrudan güvenlik kontrolüne ilerleyebilir.
+1.2. Kontuar (Havalimanı) Kapanış Saatleri
+* İç Hatlar: Kontuarlar uçuştan 45 dakika önce kapanır. Bu süreden sonra gelen yolcuların bilet ve bagaj işlemleri sistem tarafından kabul edilmez.
+* Dış Hatlar: Kontuarlar uçuştan 60 dakika önce kapanır.
+* Geç Kalma (Late Arrival): Kontuar kapandıktan sonra gelen yolcular "No-Show" statüsüne düşer. Check-in süresi içinde kontuarda bulunmayan yolcular için uçuş hakkı yanabilir.
+2. BÖLÜM: Sağlık ve Hamilelik Prosedürleri
+2.1. Hamile Yolcu Seyahat Kuralları
+* 28. Haftaya Kadar: Herhangi bir tıbbi rapor veya izin belgesi aranmaz.
+* 28-35. Hafta (Tekiz): "Uçakla seyahatinde tıbbi açıdan bir sakınca yoktur" ibaresini içeren, son 7 gün içinde alınmış doktor raporu zorunludur.
+* 28-32. Hafta (Çoğul - İkiz/Üçüz vb.): Doktor raporu ibrazı zorunludur.
+* 32. Haftadan Sonra (Çoğul): Seyahate kesinlikle kabul edilmez.
+* 36. Hafta ve Sonrası (Tekiz): Doktor raporu olsa dahi seyahate kabul edilmez.
+2.2. İlaç ve Tıbbi Ekipman
+* Reçeteli İlaçlar: Yolcuların, ilaçlarını orijinal kutularında ve reçeteleri/sağlık raporları ile birlikte el bagajında bulundurmaları önerilir.
+* Tıbbi Cihazlar: Uçuş esnasında oksijen tüpü veya solunum cihazı (POC) kullanması gereken yolcuların, uçuştan en az 48 saat önce "Özel Hizmet Talebi" (SSR) oluşturmaları ve onay almaları gerekir.
+3. BÖLÜM: Engelli ve Özel Gereksinimli Yolcular
+3.1. Tekerlekli Sandalye ve Refakat
+* Talep: Tekerlekli sandalye hizmeti, uçuştan en az 48 saat önce çağrı merkezi veya web sitesi üzerinden talep edilmelidir.
+* Kendi Sandalyesi: Yolcu kendi tekerlekli sandalyesi ile seyahat edecekse; sandalyenin akülü mü yoksa manuel mi olduğu bilgisi (akü tipi ile birlikte) mutlaka bildirilmelidir.
+3.2. Refakatsiz Çocuk (UM - Unaccompanied Minor)
+* Yaş Aralığı: 7-12 yaş arası tek başına seyahat eden çocuklar içindir.
+* Prosedür: Havalimanında ebeveyn veya yasal vasi tarafından teslim edilmesi, uçuşun karşılanacağı noktada yine yetkili bir yetişkin tarafından karşılanması şarttır. "Refakatsiz Çocuk Formu" havalimanında doldurulmalıdır.
+*

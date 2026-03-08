@@ -1,0 +1,1354 @@
+:root {
+  --thy-red: #C70A0C;
+  --thy-red-dark: #9a080a;
+  --thy-gray: #333;
+  --thy-gray-light: #f5f5f5;
+  --thy-white: #fff;
+  --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  --radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  color: var(--thy-gray);
+  background: var(--thy-gray-light);
+  min-height: 100vh;
+}
+
+.header {
+  background: var(--thy-red);
+  color: var(--thy-white);
+  padding: 0.75rem 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo-img {
+  height: 32px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  color: var(--thy-white);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.nav-link.active {
+  background: var(--thy-white);
+  color: var(--thy-red);
+  text-decoration: none;
+}
+
+.main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.main.hidden {
+  display: none !important;
+}
+
+#main-my-tickets .page-section {
+  display: block;
+}
+
+#my-tickets-list {
+  min-height: 120px;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.hero h1 {
+  margin: 0 0 0.5rem;
+  font-size: 1.75rem;
+  color: var(--thy-gray);
+}
+
+.hero-sub {
+  margin: 0;
+  color: #666;
+  font-size: 1rem;
+}
+
+.booking-card {
+  background: var(--thy-white);
+  border-radius: var(--radius);
+  padding: 1.5rem 2rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 2rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tab {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  background: var(--thy-white);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tab.active {
+  background: var(--thy-red);
+  color: var(--thy-white);
+  border-color: var(--thy-red);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 700px) {
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Nereden/Nereye autocomplete list */
+.field-autocomplete .autocomplete-wrap {
+  position: relative;
+}
+
+.autocomplete-list {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  margin-top: 2px;
+  background: var(--thy-white);
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.autocomplete-list.hidden {
+  display: none !important;
+}
+
+.autocomplete-item {
+  padding: 0.6rem 0.75rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: var(--thy-gray);
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.15s;
+}
+
+.autocomplete-item:last-child {
+  border-bottom: none;
+}
+
+.autocomplete-item:hover,
+.autocomplete-item[aria-selected="true"] {
+  background: var(--thy-gray-light);
+}
+
+.autocomplete-item .autocomplete-code {
+  color: #666;
+  font-size: 0.85em;
+  margin-left: 0.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.field label {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.input {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+select.input {
+  cursor: pointer;
+  appearance: none;
+  min-height: 2.75rem;
+  padding: 0.65rem 2rem 0.65rem 0.85rem;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: var(--thy-white);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+select.input:hover {
+  border-color: #999;
+}
+
+select.input:focus {
+  outline: none;
+  border-color: var(--thy-red);
+  box-shadow: 0 0 0 2px rgba(199, 10, 12, 0.15);
+}
+
+input[type="date"].input {
+  cursor: pointer;
+  min-height: 2.75rem;
+  min-width: 0;
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  box-sizing: border-box;
+}
+
+.btn-primary {
+  background: var(--thy-red);
+  color: var(--thy-white);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--thy-red-dark);
+}
+
+.btn-secondary {
+  background: var(--thy-white);
+  color: var(--thy-gray);
+  border: 1px solid #ccc;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.page-section {
+  background: var(--thy-white);
+  border-radius: var(--radius);
+  padding: 1.5rem 2rem;
+  box-shadow: var(--shadow);
+}
+
+.page-section.hidden {
+  display: none;
+}
+
+.page-section h2 {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+}
+
+.flight-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.no-flights {
+  padding: 1.5rem;
+  text-align: center;
+  color: #666;
+  background: var(--thy-gray-light);
+  border-radius: 6px;
+}
+
+.flight-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #eee;
+  border-radius: 6px;
+}
+
+.flight-item .time { flex: 0 0 100px; }
+.flight-item .duration { flex: 0 0 55px; color: #666; font-size: 0.9rem; }
+.flight-item .date { flex: 0 0 110px; font-size: 0.9rem; color: #555; }
+.flight-item .price { flex: 0 0 80px; font-weight: 600; }
+.flight-item .pax-info { flex: 0 0 55px; font-size: 0.85rem; color: #666; }
+.btn-small {
+  padding: 0.4rem 0.8rem;
+  background: var(--thy-red);
+  color: var(--thy-white);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.form-card {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+/* Yolcu bilgileri: başlık + form satırı dikey dizilsin, form satırı tam genişlikte kalsın */
+#passenger-fields.form-card {
+  grid-template-columns: 1fr;
+}
+
+.baggage-seat-leg-label {
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--thy-gray);
+  grid-column: 1 / -1;
+}
+
+.baggage-seat-leg.form-card {
+  grid-template-columns: 1fr 1fr;
+}
+
+.baggage-seat-leg {
+  margin-bottom: 1rem;
+}
+
+.baggage-seat-leg:last-of-type {
+  margin-bottom: 0;
+}
+
+.baggage-seat-return-wrap {
+  margin-top: 1rem;
+}
+
+.baggage-seat-total-box {
+  margin-top: 1.25rem;
+  padding: 1rem;
+  background: var(--thy-gray-light);
+  border-radius: var(--radius);
+}
+
+.baggage-seat-total-box .total {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--thy-gray);
+}
+
+.booking-total-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  background: var(--thy-red);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.booking-total-bar.hidden {
+  display: none;
+}
+
+.booking-total-bar .booking-total-label {
+  opacity: 0.95;
+}
+
+.booking-total-bar .booking-total-amount {
+  font-size: 1.25rem;
+}
+
+#passenger-fields .form-row {
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 100%;
+}
+
+.summary-box {
+  background: var(--thy-gray-light);
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.summary-box .total {
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+}
+
+/* Chat widget */
+.chat-widget {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1000;
+}
+
+.chat-toggle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--thy-red);
+  color: var(--thy-white);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(199, 10, 12, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+.chat-toggle-icon {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.chat-toggle-label {
+  margin-top: 3px;
+  font-weight: 800;
+}
+
+.chat-panel {
+  position: absolute;
+  bottom: 88px;
+  right: 0;
+  width: 420px;
+  min-width: 280px;
+  max-width: min(560px, calc(100vw - 2rem));
+  height: 520px;
+  min-height: 320px;
+  max-height: calc(100vh - 8rem);
+  background: var(--thy-white);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chat-resize-handle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  cursor: nwse-resize;
+  z-index: 1;
+}
+
+.chat-resize-handle::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-left: 2px solid rgba(255,255,255,0.8);
+  border-top: 2px solid rgba(255,255,255,0.8);
+  border-radius: 2px 0 0 0;
+}
+
+.chat-panel.hidden {
+  display: none;
+}
+
+.chat-header {
+  background: var(--thy-red);
+  color: var(--thy-white);
+  padding: 0.75rem 1rem 0.75rem 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+.chat-close {
+  background: none;
+  border: none;
+  color: var(--thy-white);
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 4px;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.msg-wrap {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  max-width: 95%;
+}
+
+.msg-wrap-bot {
+  align-self: flex-start;
+  flex-direction: row;
+}
+
+.msg-wrap-user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.msg-avatar {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.msg-avatar-user {
+  background: #9e9e9e;
+}
+
+.msg-avatar-bot {
+  background: var(--thy-gray-light);
+}
+
+.msg-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.msg {
+  max-width: 85%;
+  padding: 0.6rem 0.9rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.msg.user {
+  background: var(--thy-red);
+  color: var(--thy-white);
+}
+
+.msg.bot {
+  background: var(--thy-gray-light);
+  color: var(--thy-gray);
+  white-space: pre-wrap; /* boş satırlar / \n satır kırılımı olarak görünsün */
+}
+
+.chat-input-wrap {
+  padding: 0.75rem;
+  border-top: 1px solid #eee;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.chat-send {
+  padding: 0.6rem 1rem;
+  background: var(--thy-red);
+  color: var(--thy-white);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.chat-send:hover {
+  background: var(--thy-red-dark);
+}
+
+.chat-send:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.passenger-title {
+  font-size: 1rem;
+  margin: 1rem 0 0.5rem;
+  color: var(--thy-gray);
+}
+.passenger-title:first-child { margin-top: 0; }
+
+.payment-mock-note {
+  background: #fff8e6;
+  border: 1px solid #f0e0a0;
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+
+.confirmation-box {
+  background: var(--thy-gray-light);
+  padding: 0;
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.confirmation-success {
+  background: #0d7d4d;
+  color: var(--thy-white);
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+}
+
+.confirmation-success-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.confirmation-success-title {
+  margin: 0 0 0.25rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.confirmation-success-text {
+  margin: 0;
+  font-size: 1rem;
+  opacity: 0.95;
+}
+
+.confirmation-details {
+  padding: 1.25rem;
+}
+
+.ticket-card {
+  position: relative;
+  background: var(--thy-white);
+  border: 1px solid #eee;
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  padding-right: 2.5rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.ticket-delete-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #999;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.2s, color 0.2s, background 0.2s;
+}
+
+.ticket-card:hover .ticket-delete-btn {
+  opacity: 1;
+}
+
+.ticket-delete-btn:hover {
+  color: var(--thy-red);
+  background: rgba(199, 10, 12, 0.08);
+}
+
+.ticket-card.ticket-expired {
+  opacity: 0.75;
+  border-color: #ddd;
+}
+
+.ticket-card-header {
+  margin-bottom: 0.5rem;
+}
+
+.ticket-card-details {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.btn-edit-ticket {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  border: 1px solid var(--thy-red);
+  color: var(--thy-red);
+  background: var(--thy-white);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-edit-ticket:hover {
+  background: var(--thy-red);
+  color: var(--thy-white);
+}
+
+.ticket-edit-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  padding: 1rem;
+  backdrop-filter: blur(2px);
+}
+
+.ticket-edit-overlay.hidden {
+  display: none;
+}
+
+/* Bilet silme onay modal */
+.ticket-delete-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1002;
+  padding: 1rem;
+}
+
+.ticket-delete-modal.hidden {
+  display: none;
+}
+
+.ticket-delete-modal-inner {
+  background: var(--thy-white);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  padding: 1.5rem 1.75rem;
+  max-width: 360px;
+  width: 100%;
+}
+
+.ticket-delete-modal-text {
+  margin: 0 0 1.25rem;
+  font-size: 1rem;
+  color: var(--thy-gray);
+  line-height: 1.4;
+}
+
+.ticket-delete-modal-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+.btn-delete-cancel {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  background: var(--thy-white);
+  color: var(--thy-gray);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.btn-delete-cancel:hover {
+  background: var(--thy-gray-light);
+  border-color: #999;
+}
+
+.btn-delete-confirm {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.95rem;
+  border: none;
+  background: var(--thy-red);
+  color: var(--thy-white);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.btn-delete-confirm:hover {
+  background: var(--thy-red-dark);
+}
+
+.ticket-edit-panel {
+  background: var(--thy-white);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  max-width: 440px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.ticket-edit-panel h3 {
+  margin: 0;
+  padding: 1rem 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  background: var(--thy-red);
+  color: var(--thy-white);
+  border-radius: 12px 12px 0 0;
+}
+
+.ticket-edit-pnr {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0;
+  padding: 0.5rem 1.5rem 0;
+}
+
+.ticket-edit-panel .form-card {
+  padding: 1rem 1.5rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.ticket-edit-panel .form-card .field {
+  margin-bottom: 1rem;
+}
+
+.ticket-edit-panel .form-card .field:last-child {
+  margin-bottom: 0;
+}
+
+.ticket-edit-actions {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem 1.25rem;
+  border-top: 1px solid #eee;
+  background: var(--thy-gray-light);
+  border-radius: 0 0 12px 12px;
+}
+
+.ticket-edit-actions .btn-secondary {
+  margin-top: 0;
+  padding: 0.6rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 1px solid #999;
+  color: var(--thy-gray);
+  background: var(--thy-white);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.ticket-edit-actions .btn-secondary:hover {
+  background: #f0f0f0;
+  border-color: #777;
+  color: #333;
+}
+
+.ticket-edit-actions .btn-primary {
+  flex: 1;
+  padding: 0.6rem 1.25rem;
+  font-size: 1rem;
+}
+
+.badge.expired {
+  background: #999;
+  color: var(--thy-white);
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  margin-left: 0.5rem;
+}
+
+.no-tickets {
+  color: #666;
+  padding: 2rem;
+  text-align: center;
+}
+
+#page-my-tickets h1 {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+}
+
+textarea.input {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* Sunucu / RAG hazır olana kadar yükleme ekranı */
+.app-loading {
+  position: fixed;
+  inset: 0;
+  background: var(--thy-gray-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.app-loading.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.app-loading-inner {
+  text-align: center;
+}
+
+.app-loading-spinner {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1rem;
+  border: 4px solid var(--thy-gray-light);
+  border-top-color: var(--thy-red);
+  border-radius: 50%;
+  animation: app-loading-spin 0.9s linear infinite;
+}
+
+@keyframes app-loading-spin {
+  to { transform: rotate(360deg); }
+}
+
+.app-loading-text {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--thy-gray);
+}
+
+/* Author (Orkun Şefik) popup */
+.author-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001;
+  padding: 1rem;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.author-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.author-popup {
+  background: var(--thy-white);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  padding: 1.5rem 1.75rem;
+  max-width: 320px;
+  width: 100%;
+  text-align: center;
+}
+
+.author-name {
+  margin: 0 0 0.25rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--thy-gray);
+}
+
+.author-role {
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.author-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.75rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.author-links a {
+  color: var(--thy-red);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.author-links a:hover {
+  text-decoration: underline;
+}
+
+.author-close {
+  margin-top: 0.25rem;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.author-close:hover {
+  background: var(--thy-gray-light);
+  border-color: #999;
+  color: var(--thy-gray);
+}
+
+.nav-link.nav-link-author {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav-link.nav-link-author:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Disclaimer popup */
+.disclaimer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 1rem;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.disclaimer-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.disclaimer-popup {
+  background: var(--thy-white);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  max-width: 420px;
+  width: 100%;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.disclaimer-text {
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--thy-gray);
+}
+
+.disclaimer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.75rem;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.disclaimer-links a {
+  color: var(--thy-red);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.disclaimer-links a:hover {
+  text-decoration: underline;
+}
+
+.disclaimer-btn {
+  background: var(--thy-red);
+  color: var(--thy-white);
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.disclaimer-btn:hover {
+  background: var(--thy-red-dark);
+}
+
+/* ========== Mobil uyum (dikey telefon ekranı) ========== */
+@media (max-width: 768px) {
+  .header {
+    padding: 0.5rem 1rem;
+  }
+
+  .header-inner {
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo-link {
+    flex-shrink: 0;
+  }
+
+  .logo-img {
+    height: 26px;
+    max-width: 120px;
+    object-fit: contain;
+  }
+
+  .nav {
+    display: flex;
+    flex-shrink: 0;
+    gap: 0.35rem;
+    width: auto;
+    justify-content: flex-end;
+  }
+
+  .nav-link {
+    padding: 0.5rem 0.75rem;
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    border-radius: 8px;
+  }
+
+  .main {
+    padding: 1rem 1rem 2rem;
+  }
+
+  .booking-card {
+    padding: 1rem 1.25rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .form-row .field:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
+  #passenger-fields .form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #passenger-fields .form-row .field:nth-child(odd):last-child {
+    grid-column: 1 / -1;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    min-height: 44px;
+    padding: 0.65rem 1rem;
+  }
+
+  /* Chat: mobilde tam ekran panel (dikey telefon deneyimi) */
+  .chat-widget {
+    bottom: 1rem;
+    right: 1rem;
+    left: auto;
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    right: max(1rem, env(safe-area-inset-right));
+  }
+
+  .chat-toggle {
+    width: 56px;
+    height: 56px;
+    font-size: 0.75rem;
+    min-width: 56px;
+    min-height: 56px;
+  }
+
+  .chat-toggle-icon {
+    font-size: 1.5rem;
+  }
+
+  .chat-panel {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    max-width: none;
+    min-height: 0;
+    max-height: none;
+    border-radius: 0;
+    box-shadow: none;
+    bottom: 0;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .chat-resize-handle {
+    display: none;
+  }
+
+  .chat-header {
+    padding: 0.75rem 1rem 0.75rem 1rem;
+    padding-left: 1rem;
+    padding-top: max(0.75rem, env(safe-area-inset-top));
+    min-height: 52px;
+  }
+
+  .chat-messages {
+    padding: 0.75rem 1rem;
+    flex: 1;
+    min-height: 0;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .chat-input-wrap {
+    padding: 0.75rem 1rem;
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+
+  .chat-input,
+  .chat-send {
+    min-height: 44px;
+  }
+
+  .flight-item {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .summary-box {
+    padding: 0.75rem;
+  }
+
+  .ticket-card {
+    padding-right: 2.25rem;
+  }
+
+  .disclaimer-popup {
+    margin: 1rem;
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .logo-img {
+    height: 22px;
+    max-width: 100px;
+  }
+
+  .nav-link {
+    padding: 0.45rem 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row .field:last-child:nth-child(odd) {
+    grid-column: auto;
+  }
+
+  #passenger-fields .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  #passenger-fields .form-row .field:nth-child(odd):last-child {
+    grid-column: auto;
+  }
+
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .page-section h2 {
+    font-size: 1.25rem;
+  }
+
+  .autocomplete-list {
+    max-height: 180px;
+  }
+}

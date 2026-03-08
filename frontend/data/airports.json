@@ -1,0 +1,25 @@
+{
+  "airports": [
+    {
+      "code": "IST",
+      "city": "İstanbul",
+      "country": "Türkiye",
+      "countryCode": "TR",
+      "isDomestic": true
+    },
+    {
+      "code": "ESB",
+      "city": "Ankara",
+      "country": "Türkiye",
+      "countryCode": "TR",
+      "isDomestic": true
+    },
+    {
+      "code": "AMS",
+      "city": "Amsterdam",
+      "country": "Hollanda",
+      "countryCode": "NL",
+      "isDomestic": false
+    }
+  ]
+}
