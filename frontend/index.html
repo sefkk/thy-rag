@@ -21,7 +21,7 @@
       <div class="author-links">
         <a href="https://www.linkedin.com/in/orkunsefik/" id="author-linkedin" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://orkunsefik.dev" id="author-website" target="_blank" rel="noopener">Kişisel Web</a>
-        <a href="https://github.com/sefkk" id="author-github" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/sefkk/thy-rag" id="author-github" target="_blank" rel="noopener">GitHub</a>
       </div>
       <button type="button" class="author-close btn-secondary" id="author-close">Kapat</button>
     </div>
@@ -98,13 +98,18 @@
     <section class="page-section hidden" id="page-flight-list" data-page="flight-list">
       <h2 id="flight-list-title">Gidiş uçuşu seçin</h2>
       <div class="flight-list" id="flight-list-container"></div>
-      <button type="button" class="btn-secondary" id="btn-back-search">Geri</button>
+      <div class="page-actions">
+        <button type="button" class="btn-secondary" id="btn-back-search">Geri</button>
+      </div>
     </section>
 
     <section class="page-section hidden" id="page-passenger" data-page="passenger-info">
       <h2>Yolcu Bilgileri</h2>
       <div class="form-card" id="passenger-fields"></div>
-      <button type="button" class="btn-primary" id="btn-to-baggage">Devam</button>
+      <div class="page-actions">
+        <button type="button" class="btn-secondary" id="btn-back-to-flights">Geri</button>
+        <button type="button" class="btn-primary" id="btn-to-baggage">Devam</button>
+      </div>
     </section>
 
     <section class="page-section hidden" id="page-baggage-seat" data-page="baggage-seat">
@@ -154,7 +159,10 @@
           </select>
         </div>
       </div>
-      <button type="button" class="btn-primary" id="btn-to-special">Devam</button>
+      <div class="page-actions">
+        <button type="button" class="btn-secondary" id="btn-back-to-passenger">Geri</button>
+        <button type="button" class="btn-primary" id="btn-to-special">Devam</button>
+      </div>
     </section>
 
     <section class="page-section hidden" id="page-special-needs" data-page="special-needs">
@@ -165,20 +173,29 @@
           <textarea id="special-needs-input" class="input" rows="3" placeholder="Örn: tekerlekli sandalye, tıbbi destek, özel yemek..."></textarea>
         </div>
       </div>
-      <button type="button" class="btn-primary" id="btn-to-lastcheck">Devam</button>
+      <div class="page-actions">
+        <button type="button" class="btn-secondary" id="btn-back-to-baggage">Geri</button>
+        <button type="button" class="btn-primary" id="btn-to-lastcheck">Devam</button>
+      </div>
     </section>
 
     <section class="page-section hidden" id="page-lastcheck" data-page="lastcheck">
       <h2>Son Kontrol</h2>
       <div class="summary-box" id="lastcheck-summary"></div>
-      <button type="button" class="btn-primary" id="btn-to-payment">Ödemeye Geç (Mock-up)</button>
+      <div class="page-actions">
+        <button type="button" class="btn-secondary" id="btn-back-to-special">Geri</button>
+        <button type="button" class="btn-primary" id="btn-to-payment">Ödemeye Geç (Mock-up)</button>
+      </div>
     </section>
 
     <section class="page-section hidden" id="page-payment" data-page="payment">
       <h2>Ödeme</h2>
       <div class="summary-box" id="payment-summary"></div>
-      <p class="payment-mock-note">Bu bir mock-up olduğu için burada sadece bir tuş var — <strong>«Ödeme yap»</strong> butonuna bastığınız an onay sayfasına gideceksiniz.</p>
-      <button type="button" class="btn-primary" id="btn-pay">Ödeme yap</button>
+      <p class="payment-mock-note">Bu bir mock-up olduğu için burada sadece bir tuş var <strong>«Ödeme yap»</strong> butonuna bastığınız an onay sayfasına gideceksiniz.</p>
+      <div class="page-actions">
+        <button type="button" class="btn-secondary" id="btn-back-to-lastcheck">Geri</button>
+        <button type="button" class="btn-primary" id="btn-pay">Ödeme yap</button>
+      </div>
     </section>
 
     <section class="page-section hidden" id="page-confirmation" data-page="confirmation">

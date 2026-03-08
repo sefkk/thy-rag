@@ -394,12 +394,23 @@
       var div = document.createElement("div");
       div.className = "form-row";
       div.innerHTML =
-        "<div class=\"field\"><label>Ad</label><input type=\"text\" class=\"input\" data-passenger-index=\"" + i + "\" data-field=\"firstName\" placeholder=\"Ad\" /></div>" +
-        "<div class=\"field\"><label>Soyad</label><input type=\"text\" class=\"input\" data-passenger-index=\"" + i + "\" data-field=\"lastName\" placeholder=\"Soyad\" /></div>" +
-        "<div class=\"field\"><label>E-posta</label><input type=\"email\" class=\"input\" data-passenger-index=\"" + i + "\" data-field=\"email\" placeholder=\"ornek@email.com\" /></div>" +
-        "<div class=\"field\"><label>Telefon</label><input type=\"tel\" class=\"input\" data-passenger-index=\"" + i + "\" data-field=\"phone\" placeholder=\"5XX XXX XX XX\" /></div>";
+        "<div class=\"field\"><label>Ad <span class=\"required\">*</span></label><input type=\"text\" class=\"input\" data-passenger-index=\"" + i + "\" data-field=\"firstName\" placeholder=\"Ad\" required /></div>" +
+        "<div class=\"field\"><label>Soyad <span class=\"required\">*</span></label><input type=\"text\" class=\"input\" data-passenger-index=\"" + i + "\" data-field=\"lastName\" placeholder=\"Soyad\" required /></div>" +
+        "<div class=\"field\"><label>E-posta <span class=\"required\">*</span></label><input type=\"email\" class=\"input\" data-passenger-index=\"" + i + "\" data-field=\"email\" placeholder=\"ornek@email.com\" required /></div>" +
+        "<div class=\"field\"><label>Telefon <span class=\"required\">*</span></label><input type=\"tel\" class=\"input\" inputmode=\"numeric\" data-passenger-index=\"" + i + "\" data-field=\"phone\" placeholder=\"5XX XXX XX XX\" required /></div>";
       container.appendChild(div);
     }
+    bindPassengerPhoneNumbers();
+  }
+
+  function bindPassengerPhoneNumbers() {
+    var container = document.getElementById("passenger-fields");
+    if (!container) return;
+    container.querySelectorAll("input[data-field=\"phone\"]").forEach(function (inp) {
+      inp.addEventListener("input", function () {
+        this.value = this.value.replace(/\D/g, "");
+      });
+    });
   }
 
   function collectPassengers() {
@@ -787,7 +798,25 @@
       }
     });
 
+    document.getElementById("btn-back-to-flights").addEventListener("click", function () {
+      setPage("flight-list");
+      showSection("page-flight-list");
+      updateBookingTotalBar("page-flight-list");
+    });
+
     document.getElementById("btn-to-baggage").addEventListener("click", function () {
+      var fields = document.querySelectorAll("#passenger-fields input[data-field][required]");
+      var empty = [];
+      fields.forEach(function (inp) {
+        if (!inp.value.trim()) {
+          var label = (inp.closest(".field") && inp.closest(".field").querySelector("label")) ? inp.closest(".field").querySelector("label").textContent.replace(/\s*\*\s*$/, "").trim() : "Alan";
+          if (empty.indexOf(label) === -1) empty.push(label);
+        }
+      });
+      if (empty.length > 0) {
+        alert("Lütfen zorunlu alanları doldurun: " + empty.join(", "));
+        return;
+      }
       collectPassengers();
       bookingState.baseFlightTotal = bookingState.totalPrice || 0;
       var returnWrap = document.getElementById("baggage-seat-return-wrap");
@@ -795,6 +824,12 @@
       setPage("baggage-seat");
       showSection("page-baggage-seat");
       updateBaggageSeatTotal();
+    });
+
+    document.getElementById("btn-back-to-passenger").addEventListener("click", function () {
+      setPage("passenger-info");
+      showSection("page-passenger");
+      updateBookingTotalBar("page-passenger");
     });
 
     ["baggage-option", "seat-preference", "baggage-option-return", "seat-preference-return"].forEach(function (id) {
@@ -817,6 +852,12 @@
       showSection("page-special-needs");
     });
 
+    document.getElementById("btn-back-to-baggage").addEventListener("click", function () {
+      setPage("baggage-seat");
+      showSection("page-baggage-seat");
+      updateBookingTotalBar("page-baggage-seat");
+    });
+
     document.getElementById("btn-to-lastcheck").addEventListener("click", function () {
       bookingState.specialNeeds = (document.getElementById("special-needs-input") && document.getElementById("special-needs-input").value) || "";
       renderLastCheck();
@@ -824,10 +865,22 @@
       showSection("page-lastcheck");
     });
 
+    document.getElementById("btn-back-to-special").addEventListener("click", function () {
+      setPage("special-needs");
+      showSection("page-special-needs");
+      updateBookingTotalBar("page-special-needs");
+    });
+
     document.getElementById("btn-to-payment").addEventListener("click", function () {
       renderPaymentSummary();
       setPage("payment");
       showSection("page-payment");
+    });
+
+    document.getElementById("btn-back-to-lastcheck").addEventListener("click", function () {
+      setPage("lastcheck");
+      showSection("page-lastcheck");
+      updateBookingTotalBar("page-lastcheck");
     });
 
     document.getElementById("btn-pay").addEventListener("click", onPay);

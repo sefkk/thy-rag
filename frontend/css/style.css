@@ -252,6 +252,41 @@ input[type="date"].input {
   box-sizing: border-box;
 }
 
+.page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  align-items: center;
+}
+
+.page-actions .btn-primary {
+  margin-top: 0;
+}
+
+.page-actions .btn-secondary {
+  margin-top: 0;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 1px solid #bbb;
+  background: var(--thy-white);
+  color: var(--thy-gray);
+  border-radius: 6px;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.page-actions .btn-secondary:hover {
+  background: var(--thy-gray-light);
+  border-color: #999;
+  color: #333;
+}
+
+label .required {
+  color: var(--thy-red);
+  margin-left: 0.1em;
+}
+
 .btn-primary {
   background: var(--thy-red);
   color: var(--thy-white);
