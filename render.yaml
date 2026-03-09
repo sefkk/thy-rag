@@ -1,5 +1,5 @@
-# Render Blueprint: Backend (FastAPI + RAG)
-# Repo'yu Render'a bağlayıp bu dosyayla servisi oluşturun.
+# Render Blueprint: Backend (FastAPI + RAG) + statik frontend
+# Repo'yu Render'a bağlayın; servis otomatik oluşur. Dashboard'da GEMINI_API_KEY veya OPENAI_API_KEY tanımlayın.
 services:
   - type: web
     name: thy-rag-api

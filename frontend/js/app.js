@@ -960,7 +960,7 @@
 
     document.getElementById("btn-back-home").addEventListener("click", function () {
       bookingState = { flight: null, returnFlight: null, selectingReturnFlight: false, passengerCount: 1, passengers: [], baggageOption: "cabin", seatPreference: "", returnBaggageOption: "cabin", returnSeatPreference: "", specialNeeds: "", totalPrice: 0, baseFlightTotal: 0, freeCancellation: false };
-      showBookingCard();
+      setPage("my-tickets");
     });
 
     var editCancel = document.getElementById("ticket-edit-cancel");

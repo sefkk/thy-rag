@@ -66,37 +66,46 @@ PYTHONPATH=backend python backend/embed.py
 # backend/.chroma güncellendi; git add backend/.chroma && git commit && git push
 ```
 
-## Deploy (Netlify + Render)
+## Deploy (Render)
 
-Frontend’i **Netlify**, backend’i **Render**’da çalıştırabilirsiniz. Chat’in çalışması için frontend’in API isteklerini Render URL’ine yönlendirmesi gerekir.
+Proje **Render**’da tek servis olarak çalışacak şekilde ayarlıdır: API + statik frontend aynı URL’de sunulur. Repoyu bağlayıp ortam değişkenlerini eklemeniz yeterlidir.
 
-### Render (backend)
+### Render’a deploy adımları
 
-- Repoyu Render’a bağlayın. `render.yaml` kullanıyorsanız servis otomatik tanımlanır.
-- **Ortam değişkenleri:** `GEMINI_API_KEY` veya `OPENAI_API_KEY` (en az biri). İsteğe bağlı: `DATA_DIR=data`.
-- **Start komutu:** `PYTHONPATH=backend uvicorn app:app --host 0.0.0.0 --port $PORT` (production’da `--reload` yok).
-- **Health check:** `/api/health`. RAG indeksi `backend/.chroma` repoda commit edilmişse açılışta tekrar build edilmez (soğuk başlangıç hızlı olur). **Python:** `runtime.txt` ile 3.11 kullanılır.
+1. **GitHub’da repo:** Kodu `thy-rag` adlı public bir GitHub reposuna pushlayın (varsa atlayın).
+2. **Render’a giriş:** [render.com](https://render.com) → GitHub ile giriş yapın.
+3. **Yeni Web Service:** Dashboard → **New** → **Web Service**. Repo olarak `thy-rag`’ı seçin.
+4. **Blueprint:** “Configure from render.yaml” seçeneği çıkarsa seçin; böylece `render.yaml`’daki ayarlar (build/start komutları, env placeholder’lar) otomatik uygulanır. Servis adı örn. `thy-rag-api` olur.
+5. **Ortam değişkenleri:** Aynı sayfada veya **Environment** sekmesinde:
+   - **GEMINI_API_KEY** veya **OPENAI_API_KEY** (en az biri) → **Secret** olarak ekleyin. Chat’in yanıt verebilmesi için zorunludur.
+   - **DATA_DIR** = `data` (isteğe bağlı; `render.yaml`’da zaten tanımlı).
+6. **Deploy:** **Create Web Service** ile ilk deploy başlar. Build bittikten sonra servis URL’i (örn. `https://thy-rag-api.onrender.com`) ile hem site hem API erişilebilir.
+7. **Kontrol:** `https://<servis-adı>.onrender.com/api/health` açıldığında `{"status":"ok"}` dönmeli. Ana URL’de frontend (bilet al, chatbot) açılmalı.
 
-### Netlify (frontend)
+**Not:** `backend/.chroma` repoda mevcutsa RAG indeksi açılışta yeniden oluşturulmaz (soğuk başlangıç hızlı olur). İndeks yoksa ilk istekte `data/` okunup indekslenir.
 
-- **Publish directory:** `frontend` (`netlify.toml` içinde tanımlı).
-- **API base URL:** Frontend, chat için backend’e istek atar. Netlify’da frontend farklı origin’de olduğu için `frontend/js/config.js` içinde Render backend URL’ini yazın:
+### Netlify ile ayrı frontend (isteğe bağlı)
+
+Frontend’i **Netlify**’da, backend’i **Render**’da ayrı tutmak isterseniz:
+
+- Netlify’da **Publish directory:** `frontend` (`netlify.toml`’da tanımlı).
+- `frontend/js/config.js` içinde Render backend URL’ini yazın:
   ```js
   window.API_BASE = "https://thy-rag-api.onrender.com";
   ```
   (Servis adınız farklıysa o URL’i kullanın.)
 
-### Tek sunucu (Render’da full-stack)
+### Tek sunucu (önerilen)
 
-Backend zaten statik dosyaları sunuyor. Sadece Render’da tek bir Web Service açıp repoyu deploy edebilirsiniz; `render.yaml`’daki start komutu aynı kalır. Bu durumda Netlify kullanmaz, `API_BASE` boş bırakılır (same-origin).
+Varsayılan kurulum **tek sunucu**dır: Render’da tek Web Service hem API’yi hem statik siteyi sunar. `frontend/js/config.js` içinde `window.API_BASE = ""` kalır (same-origin). Netlify kullanmanız gerekmez.
 
 ---
 
 ## Deploy öncesi kontrol
 
-- Render: Ortam değişkenlerinde `GEMINI_API_KEY` veya `OPENAI_API_KEY` (en az biri) tanımlı mı?
-- Netlify: `frontend/js/config.js` içinde `window.API_BASE` Render backend URL'inize ayarlı mı?
-- RAG: İlk deploy'dan önce yerelde `PYTHONPATH=backend python backend/embed.py` çalıştırıp `backend/.chroma`'yı repoya eklediyseniz soğuk başlangıç kısalır.
+- [ ] Render Environment’ta **GEMINI_API_KEY** veya **OPENAI_API_KEY** (en az biri) Secret olarak tanımlı mı?
+- [ ] Repoda `backend/.chroma` var mı? (Yoksa ilk açılışta RAG indeksi `data/`’dan oluşturulur; biraz sürebilir.)
+- [ ] Netlify kullanıyorsanız `frontend/js/config.js`’te `window.API_BASE` Render URL’inize ayarlı mı?
 
 ---
 
@@ -138,8 +147,9 @@ thy-rag/
 │   ├── .chroma/        # RAG indeksi (repo’da; deploy’da tekrar build gerekmez)
 │   └── requirements.txt
 ├── data/               # RAG dokümanları (.txt, .md)
-├── render.yaml         # Render Blueprint (backend)
-├── runtime.txt         # Python sürümü (Render deploy)
-├── netlify.toml        # Netlify (frontend publish)
-└── run.sh              # Local çalıştırma (--reload)
+├── .env.example        # Yerel env şablonu (Render’da Dashboard kullanılır)
+├── render.yaml         # Render Blueprint (tek servis: API + frontend)
+├── runtime.txt         # Python sürümü (Render)
+├── netlify.toml        # Netlify (isteğe bağlı ayrı frontend)
+└── run.sh              # Yerel çalıştırma (--reload)
 ```

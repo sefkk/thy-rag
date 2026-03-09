@@ -3,10 +3,15 @@ RAG pipeline: load data/ docs, chunk, embed (sentence-transformers), store in Ch
 Query: embed question, retrieve top-k, return context for LLM.
 data/metadata.json: her dosya için source_title, priority, categories; RAG bağlamında kullanılır.
 """
+import os
 import json
 import re
+import warnings
 from pathlib import Path
 from typing import Optional
+
+os.environ["ANONYMIZED_TELEMETRY"] = "False"
+warnings.filterwarnings("ignore", message=".*resource_tracker.*leaked semaphore.*", category=UserWarning)
 
 import chromadb
 from chromadb.config import Settings

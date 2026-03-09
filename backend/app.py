@@ -4,13 +4,17 @@ THY RAG Chat API. Serves /api/chat, /api/health and static frontend at /.
 import json
 import logging
 import os
+import warnings
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Optional
 
-# ChromaDB telemetry hatalarını gösterme (logger + env)
 os.environ["ANONYMIZED_TELEMETRY"] = "False"
-logging.getLogger("chromadb").setLevel(logging.ERROR)
+for _name in ("chromadb", "chromadb.telemetry", "chromadb.telemetry.posthog"):
+    logging.getLogger(_name).setLevel(logging.ERROR)
+warnings.filterwarnings("ignore", message=".*Python version 3.9 past its end of life.*", category=FutureWarning, module="google.auth.*")
+warnings.filterwarnings("ignore", message=".*Python version 3.9 past its end of life.*", category=FutureWarning, module="google.oauth2.*")
+warnings.filterwarnings("ignore", message=".*resource_tracker.*leaked semaphore.*", category=UserWarning)
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
