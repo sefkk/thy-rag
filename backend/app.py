@@ -60,7 +60,9 @@ class ChatRequest(BaseModel):
     message: str
     current_page: Optional[str] = None
     history: list[ChatHistoryItem] = []
+    current_date: Optional[str] = None     # Bugünün tarihi (asistan "bugün", "yarın" gibi ifadeler için kullanır)
     booking_context: Optional[str] = None  # Güncel toplam, seçimler, ücret tablosu – asistan buna göre yönlendirir
+    search_context: Optional[str] = None   # Uçuş listesi: arama + kullanıcının gördüğü uçuş listesi (hangi bileti seçeyim için)
 
 
 class ChatResponse(BaseModel):
@@ -170,10 +172,14 @@ def chat(request: Request, req: ChatRequest):
         req.current_page,
         top_k=settings.retrieval_top_k,
     )
+    if req.current_date and req.current_date.strip():
+        context = "[Tarih – 'bugün', 'yarın' gibi ifadelerde buna göre yanıt ver]\n" + req.current_date.strip() + "\n\n" + context
     if req.current_page and req.current_page.strip() in PAGE_GUIDE:
         context = context + "\n\n[Kullanıcının bulunduğu sayfa rehberi – sadece buna göre adım/buton söyle]\n" + PAGE_GUIDE[req.current_page.strip()]
     if req.booking_context and req.booking_context.strip():
         context = context + "\n\n[Rezervasyon ve fiyat bilgisi – bu rakamları kullanarak somut öneri ver, ne seçerse ne kadar artar söyle]\n" + req.booking_context.strip()
+    if req.search_context and req.search_context.strip():
+        context = context + "\n\n[Arama / uçuş listesi – kullanıcının ekranda gördüğü uçuşlar burada; 'hangi bileti seçeyim', 'konsere yetişmem lazım' gibi sorularda bu listeye göre somut öneri ver (uçuş id, saat, fiyat söyle)]\n" + req.search_context.strip()
     reply = _call_llm(context, msg, history)
     return ChatResponse(reply=reply)
 

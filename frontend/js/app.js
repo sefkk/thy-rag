@@ -36,6 +36,8 @@
   var currentPage = "home";
   var flightsData = { routes: [], flights: [] };
   var airportsData = { airports: [] };
+  var FREE_CANCELLATION_FEE = 799;
+
   var bookingState = {
     flight: null,
     returnFlight: null,
@@ -48,11 +50,12 @@
     returnSeatPreference: "",
     specialNeeds: "",
     totalPrice: 0,
-    baseFlightTotal: 0
+    baseFlightTotal: 0,
+    freeCancellation: false
   };
 
-  var BAGAGE_FEES = { cabin: 0, "15kg": 285, "20kg": 465, "25kg": 65 };
-  var SEAT_FEES = { "": 0, window: 355, aisle: 355, middle: 35 };
+  var BAGAGE_FEES = { cabin: 0, "15kg": 285, "20kg": 465, "25kg": 605 };
+  var SEAT_FEES = { "": 0, window: 355, aisle: 355, middle: 75 };
 
   function getSeatFee(value) {
     return (SEAT_FEES[value] != null) ? SEAT_FEES[value] : 0;
@@ -75,6 +78,49 @@
     updateBookingTotalBar("page-baggage-seat");
   }
 
+  function getCurrentDateForChat() {
+    var d = new Date();
+    var months = "Ocak Şubat Mart Nisan Mayıs Haziran Temmuz Ağustos Eylül Ekim Kasım Aralık".split(" ");
+    var iso = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+    var tr = d.getDate() + " " + months[d.getMonth()] + " " + d.getFullYear();
+    return "Bugünün tarihi: " + tr + " (" + iso + ").";
+  }
+
+  function getCurrentDisplayedFlights() {
+    if (currentPage !== "flight-list" || !flightsData.flights || !flightsData.routes) return [];
+    var params = getSearchParams();
+    var routes = flightsData.routes || [];
+    var wantedPax = Math.min(2, Math.max(1, params.passengerCount));
+    if (bookingState.selectingReturnFlight) {
+      var returnRouteIndex = getRouteIndex(params.toCode, params.fromCode);
+      if (returnRouteIndex < 0) return [];
+      return flightsData.flights.filter(function (f) {
+        return f.routeIndex === returnRouteIndex && f.date === params.returnDate && (f.maxPassengers || 1) === wantedPax;
+      });
+    }
+    var routeIndex = getRouteIndex(params.fromCode, params.toCode);
+    if (routeIndex < 0) return [];
+    return flightsData.flights.filter(function (f) {
+      return f.routeIndex === routeIndex && f.date === params.departureDate && (f.maxPassengers || 1) === wantedPax;
+    });
+  }
+
+  function getSearchContextForChat() {
+    if (currentPage !== "flight-list") return "";
+    var params = getSearchParams();
+    var list = getCurrentDisplayedFlights();
+    var listEmpty = list.length === 0;
+    var parts = ["Uçuş listesi sayfasında. Arama: Nereden " + (params.fromCode || "?") + ", Nereye " + (params.toCode || "?") + ", Gidiş " + (params.departureDate || "?") + ", Dönüş " + (params.returnDate || "?") + ", Yolcu " + (params.passengerCount || "?") + "."];
+    if (listEmpty) parts.push("Listede uçuş görünmüyor (0 sonuç). Demo uçuşlar 9-27 Mart 2026 ve sadece İstanbul, Ankara, Amsterdam güzergahlarındadır.");
+    else {
+      parts.push("Kullanıcının gördüğü uçuşlar (" + list.length + " adet):");
+      list.forEach(function (f) {
+        parts.push(" " + (f.id || "") + " kalkış " + (f.depTime || "") + " varış " + (f.arrTime || "") + " " + formatDate(f.date) + " " + (f.price || 0) + " ₺ " + (f.maxPassengers || 1) + " kişi");
+      });
+    }
+    return parts.join("\n");
+  }
+
   function getBookingContextForChat() {
     var total = (currentPage === "baggage-seat" && bookingState.baseFlightTotal != null)
       ? (bookingState.baseFlightTotal + getBaggageSeatExtras())
@@ -94,6 +140,7 @@
       "Gidiş: bagaj " + (bagLabels[bagOut] || bagOut) + ", koltuk " + (seatLabels[seatOut] || seatOut || "yok") + "."
     ];
     if (roundTrip) lines.push("Dönüş: bagaj " + (bagLabels[bagRet] || bagRet) + ", koltuk " + (seatLabels[seatRet] || seatRet || "yok") + ".");
+    lines.push("Ücretsiz iptal hakkı: " + (bookingState.freeCancellation ? "Var (+799 ₺)" : "Yok (Son Kontrol sayfasında 799 ₺ ile eklenebilir)."));
     lines.push("Ücret tablosu (yolcu başı, uçuş başı): Bagaj – Kabin 0 ₺; +15 kg " + (BAGAGE_FEES["15kg"] || 0) + " ₺; +20 kg " + (BAGAGE_FEES["20kg"] || 0) + " ₺; +25 kg " + (BAGAGE_FEES["25kg"] || 0) + " ₺. Koltuk – Seçmeyebilirsiniz 0 ₺; Pencere/Koridor " + (SEAT_FEES.window || 0) + " ₺; Orta " + (SEAT_FEES.middle || 0) + " ₺.");
     return lines.join(" ");
   }
@@ -297,6 +344,7 @@
       var div = document.createElement("div");
       div.className = "flight-item";
       div.innerHTML =
+        "<span class=\"flight-id\">" + (f.id || "") + "</span>" +
         "<span class=\"time\">" + f.depTime + " – " + f.arrTime + "</span>" +
         "<span class=\"duration\">" + f.duration + "</span>" +
         "<span class=\"date\">" + dateStr + "</span>" +
@@ -335,6 +383,7 @@
       var div = document.createElement("div");
       div.className = "flight-item";
       div.innerHTML =
+        "<span class=\"flight-id\">" + (f.id || "") + "</span>" +
         "<span class=\"time\">" + f.depTime + " – " + f.arrTime + "</span>" +
         "<span class=\"duration\">" + f.duration + "</span>" +
         "<span class=\"date\">" + dateStr + "</span>" +
@@ -441,15 +490,16 @@
     if (rf) {
       flightHtml += "<p><strong>Dönüş:</strong> " + rf.depTime + " " + formatDate(rf.date) + ", " + routeStrRet + "</p>";
       flightHtml += "<p><strong>Bagaj gidiş:</strong> " + (bookingState.baggageOption === "cabin" ? "Sadece kabin" : bookingState.baggageOption) + " · <strong>Dönüş:</strong> " + (bookingState.returnBaggageOption === "cabin" ? "Sadece kabin" : bookingState.returnBaggageOption) + "</p>";
-      flightHtml += "<p><strong>Koltuk gidiş:</strong> " + (bookingState.seatPreference || "Yok") + " · <strong>Dönüş:</strong> " + (bookingState.returnSeatPreference || "Yok") + "</p>";
+      flightHtml += "<p><strong>Koltuk gidiş:</strong> " + seatLabel(bookingState.seatPreference) + " · <strong>Dönüş:</strong> " + seatLabel(bookingState.returnSeatPreference) + "</p>";
     } else {
       flightHtml += "<p><strong>Bagaj:</strong> " + (bookingState.baggageOption === "cabin" ? "Sadece kabin" : bookingState.baggageOption) + "</p>";
-      flightHtml += "<p><strong>Koltuk tercihi:</strong> " + (bookingState.seatPreference || "Yok") + "</p>";
+      flightHtml += "<p><strong>Koltuk tercihi:</strong> " + seatLabel(bookingState.seatPreference) + "</p>";
     }
     el.innerHTML =
       flightHtml +
       "<p><strong>Yolcular:</strong> " + paxStr + "</p>" +
       "<p><strong>Özel ihtiyaç:</strong> " + (bookingState.specialNeeds || "Yok") + "</p>" +
+      (bookingState.freeCancellation ? "<p><strong>Ücretsiz iptal hakkı:</strong> Var (+799 ₺)</p>" : "") +
       "<p class=\"total\">Toplam: ₺" + (bookingState.totalPrice || 0).toLocaleString("tr-TR") + "</p>";
   }
 
@@ -470,6 +520,7 @@
     } else {
       html += "<p>" + (bookingState.passengerCount || 1) + " Yolcu · Bagaj: " + (bookingState.baggageOption === "cabin" ? "Sadece kabin" : bookingState.baggageOption) + "</p>";
     }
+    if (bookingState.freeCancellation) html += "<p>Ücretsiz iptal hakkı: Var</p>";
     html += "<p class=\"total\">Toplam: ₺" + (bookingState.totalPrice || 0).toLocaleString("tr-TR") + "</p>";
     el.innerHTML = html;
   }
@@ -523,6 +574,7 @@
         seat += " · Dönüş: " + seatLabel(t.returnSeatPreference);
       }
       var special = (t.specialNeeds || "").trim() ? (t.specialNeeds || "").trim() : "Yok";
+      var freeCancel = t.freeCancellation ? " · Ücretsiz iptal: Var" : "";
       var editBtn = expired ? "" : "<button type=\"button\" class=\"btn-secondary btn-edit-ticket\" data-ticket-id=\"" + (t.id || "") + "\">Biletimi düzenle</button>";
       card.innerHTML =
         "<button type=\"button\" class=\"ticket-delete-btn\" data-ticket-id=\"" + (t.id || "") + "\" aria-label=\"Bileti sil\">×</button>" +
@@ -531,7 +583,7 @@
         "</div>" +
         "<p>" + (t.routeSummary || "") + "</p>" +
         "<p>" + (t.departureDateFormatted || "") + " · ₺" + (t.totalPrice || 0).toLocaleString("tr-TR") + "</p>" +
-        "<p class=\"ticket-card-details\">Bagaj: " + bag + " · Koltuk: " + seat + (special !== "Yok" ? " · Özel ihtiyaç: " + special : "") + "</p>" +
+        "<p class=\"ticket-card-details\">Bagaj: " + bag + " · Koltuk: " + seat + (special !== "Yok" ? " · Özel ihtiyaç: " + special : "") + freeCancel + "</p>" +
         editBtn;
       container.appendChild(card);
     });
@@ -668,6 +720,7 @@
       returnBaggageOption: bookingState.returnBaggageOption || "cabin",
       returnSeatPreference: bookingState.returnSeatPreference || "",
       specialNeeds: bookingState.specialNeeds || "",
+      freeCancellation: !!bookingState.freeCancellation,
       totalPrice: bookingState.totalPrice || 0,
       createdAt: new Date().toISOString(),
       expired: false
@@ -853,6 +906,8 @@
     });
 
     document.getElementById("btn-back-to-baggage").addEventListener("click", function () {
+      var returnWrap = document.getElementById("baggage-seat-return-wrap");
+      if (returnWrap) returnWrap.classList.toggle("hidden", !bookingState.returnFlight);
       setPage("baggage-seat");
       showSection("page-baggage-seat");
       updateBookingTotalBar("page-baggage-seat");
@@ -861,8 +916,24 @@
     document.getElementById("btn-to-lastcheck").addEventListener("click", function () {
       bookingState.specialNeeds = (document.getElementById("special-needs-input") && document.getElementById("special-needs-input").value) || "";
       renderLastCheck();
+      var cb = document.getElementById("free-cancellation-checkbox");
+      if (cb) cb.checked = !!bookingState.freeCancellation;
       setPage("lastcheck");
       showSection("page-lastcheck");
+      updateBookingTotalBar("page-lastcheck");
+    });
+
+    document.getElementById("free-cancellation-checkbox").addEventListener("change", function () {
+      var checked = this.checked;
+      if (checked) {
+        bookingState.totalPrice = (bookingState.totalPrice || 0) + FREE_CANCELLATION_FEE;
+        bookingState.freeCancellation = true;
+      } else {
+        bookingState.totalPrice = Math.max(0, (bookingState.totalPrice || 0) - FREE_CANCELLATION_FEE);
+        bookingState.freeCancellation = false;
+      }
+      renderLastCheck();
+      updateBookingTotalBar("page-lastcheck");
     });
 
     document.getElementById("btn-back-to-special").addEventListener("click", function () {
@@ -878,6 +949,8 @@
     });
 
     document.getElementById("btn-back-to-lastcheck").addEventListener("click", function () {
+      var cb = document.getElementById("free-cancellation-checkbox");
+      if (cb) cb.checked = !!bookingState.freeCancellation;
       setPage("lastcheck");
       showSection("page-lastcheck");
       updateBookingTotalBar("page-lastcheck");
@@ -886,7 +959,7 @@
     document.getElementById("btn-pay").addEventListener("click", onPay);
 
     document.getElementById("btn-back-home").addEventListener("click", function () {
-      bookingState = { flight: null, returnFlight: null, selectingReturnFlight: false, passengerCount: 1, passengers: [], baggageOption: "cabin", seatPreference: "", returnBaggageOption: "cabin", returnSeatPreference: "", specialNeeds: "", totalPrice: 0, baseFlightTotal: 0 };
+      bookingState = { flight: null, returnFlight: null, selectingReturnFlight: false, passengerCount: 1, passengers: [], baggageOption: "cabin", seatPreference: "", returnBaggageOption: "cabin", returnSeatPreference: "", specialNeeds: "", totalPrice: 0, baseFlightTotal: 0, freeCancellation: false };
       showBookingCard();
     });
 
@@ -939,7 +1012,7 @@
       panel.classList.remove("hidden");
       if (!welcomeShown && messagesEl && messagesEl.children.length === 0) {
         welcomeShown = true;
-        addMessage("Merhaba, ben THY yapay zeka asistanıyım. Bilet, bagaj, check-in veya bu sayfayla ilgili sorularınızı yanıtlayabilirim. Size nasıl yardımcı olabilirim?", false);
+        addMessage("Merhaba, bilet alma ve yolculuk sürecinizde size rehberlik eden yardımcı asistanınızım. Hangi sayfada olursanız olun adım adım yardımcı olabilirim: uçuş seçimi, yolcu bilgileri, bagaj, koltuk, iade/değişiklik veya ekrandaki işlemler. Nasıl yardımcı olmamı istersiniz?", false);
       }
     }
     function closeChat() { panel.classList.add("hidden"); }
@@ -984,12 +1057,14 @@
           message: msg,
           current_page: currentPage || null,
           history: chatHistory.slice(-4),
-          booking_context: getBookingContextForChat() || null
+          current_date: getCurrentDateForChat(),
+          booking_context: getBookingContextForChat() || null,
+          search_context: getSearchContextForChat() || null
         })
       })
         .then(function (r) { if (!r.ok) throw new Error(r.statusText); return r.json(); })
         .then(function (data) {
-          var reply = data.reply || "Yanıt alınamadı.";
+          var reply = (data.reply || "Yanıt alınamadı.").replace(/\*\*/g, "");
           addMessage(reply, false);
           chatHistory.push({ role: "user", content: msg });
           chatHistory.push({ role: "assistant", content: reply });

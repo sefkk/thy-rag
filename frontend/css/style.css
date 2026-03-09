@@ -351,6 +351,7 @@ label .required {
   border-radius: 6px;
 }
 
+.flight-item .flight-id { flex: 0 0 70px; font-weight: 600; font-size: 0.9rem; color: var(--thy-gray); }
 .flight-item .time { flex: 0 0 100px; }
 .flight-item .duration { flex: 0 0 55px; color: #666; font-size: 0.9rem; }
 .flight-item .date { flex: 0 0 110px; font-size: 0.9rem; color: #555; }
@@ -390,6 +391,28 @@ label .required {
   grid-template-columns: 1fr 1fr;
 }
 
+.baggage-seat-leg select.input {
+  width: 100%;
+  min-height: 2.85rem;
+  padding: 0.7rem 2.25rem 0.7rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  background-color: #fff;
+  color: var(--thy-gray);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.baggage-seat-leg select.input:hover {
+  border-color: #999;
+}
+
+.baggage-seat-leg select.input:focus {
+  border-color: var(--thy-red);
+  box-shadow: 0 0 0 2px rgba(199, 10, 12, 0.12);
+  outline: none;
+}
+
 .baggage-seat-leg {
   margin-bottom: 1rem;
 }
@@ -400,6 +423,35 @@ label .required {
 
 .baggage-seat-return-wrap {
   margin-top: 1rem;
+}
+
+.baggage-seat-return-wrap.hidden {
+  display: none !important;
+}
+
+.free-cancellation-option {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: var(--thy-gray-light);
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.free-cancellation-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--thy-gray);
+}
+
+.free-cancellation-label input[type="checkbox"] {
+  width: 1.15rem;
+  height: 1.15rem;
+  accent-color: var(--thy-red);
+  cursor: pointer;
 }
 
 .baggage-seat-total-box {

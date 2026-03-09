@@ -1,11 +1,11 @@
 {
-  "home": "Kullanıcı ana sayfada (Bilet Rezervasyonu). Ekranda: Nereden, Nereye (açılır listeler), Gidiş ve Dönüş tarihi (takvim), Yolcu sayısı (1 veya 2). «Uçuş Ara» butonuna basarak arama yapılır. Gidiş-Dönüş / Tek Yön sekmeleri var.",
-  "flight-list": "Kullanıcı Uçuş Seçimi sayfasında. Listelenen uçuşların yanındaki «Seç» butonuna basarak bir uçuş seçebilir. «Geri» ile arama formuna dönebilir.",
-  "passenger-info": "Kullanıcı Yolcu Bilgileri sayfasında. Ad, soyad vb. alanları doldurup «Devam» butonuna basarak Bagaj ve Koltuk sayfasına geçer.",
-  "baggage-seat": "Kullanıcı Bagaj Hakkı ve Koltuk Seçimi sayfasında. Bagaj (sadece kabin, +15 kg, +20 kg, +25 kg) ve koltuk tercihi (Pencere, Koridor, Orta veya Seçmeyebilirsiniz) açılır listelerden seçilir. «Devam» ile Özel İhtiyaçlar sayfasına geçilir. Rezervasyon/fiyat bilgisi verildiyse: güncel toplamı ve her seçimin ek ücretini söyleyerek yönlendir (örn. hangi bagaj/koltuk ne kadar ekler).",
-  "special-needs": "Kullanıcı Özel İhtiyaçlar sayfasında. İsteğe bağlı metin alanına tekerlekli sandalye, tıbbi destek, özel yemek vb. yazılabilir. «Devam» ile Son Kontrol sayfasına geçilir.",
-  "lastcheck": "Kullanıcı Son Kontrol sayfasında. Rezervasyon özeti görünür. «Ödemeye Geç» butonuna basarak ödeme sayfasına gidilir.",
-  "payment": "Kullanıcı Ödeme sayfasında. «Ödeme yap» butonuna basarak işlem tamamlanır ve bilet onay sayfasına gidilir.",
-  "confirmation": "Kullanıcı Bilet Onayı sayfasında. Rezervasyon tamamlandı. «Yeni Rezervasyon» ile ana sayfaya dönülür.",
-  "my-tickets": "Kullanıcı Biletlerim sayfasında. Kayıtlı biletler listelenir. Süresi geçmemiş biletlerde «Biletimi düzenle» ile bagaj, koltuk tercihi ve özel ihtiyaç güncellenebilir. Yeni bilet almak için üst menüden «Bilet Al»a tıklanır."
+  "home": "Kullanıcı ana sayfada (Bilet Rezervasyonu). Adımlar: 1) Nereden ve Nereye alanlarından gidiş/dönüş noktalarını seçin veya yazın. 2) Gidiş ve Dönüş tarihlerini seçin. 3) Yolcu sayısını (1 veya 2) seçin. 4) «Uçuş Ara» butonuna tıklayın. Gidiş-Dönüş / Tek Yön sekmeleri var.",
+  "flight-list": "Kullanıcı Uçuş Seçimi sayfasında. Adımlar: 1) Listeden uygun uçuşu bulun. 2) O satırdaki «Seç» butonuna tıklayın. Gidiş-dönüşte önce gidişi seçin; ardından dönüş listesinden bir uçuş seçin. «Geri» ile arama formuna dönebilir.",
+  "passenger-info": "Kullanıcı Yolcu Bilgileri sayfasında. Adımlar: 1) Her yolcu için Ad, Soyad, E-posta ve Telefon (sadece rakam) alanlarını doldurun (zorunlu). 2) «Devam» butonuna tıklayın. «Geri» ile uçuş listesine dönülür.",
+  "baggage-seat": "Kullanıcı Bagaj Hakkı ve Koltuk Seçimi sayfasında. Gidiş ve (varsa) dönüş için: Bagaj (Sadece kabin, +15 kg, +20 kg, +25 kg) ve Koltuk tercihi (Pencere, Koridor, Orta veya Seçmeyebilirsiniz) açılır listelerden seçilir. Sonra «Devam» butonuna tıklanır. Rezervasyon/fiyat bilgisi verildiyse: güncel toplam ve her seçimin ek ücretini söyle.",
+  "special-needs": "Kullanıcı Özel İhtiyaçlar sayfasında. İsteğe bağlı metin alanına tekerlekli sandalye, tıbbi destek, özel yemek vb. yazılabilir. «Devam» ile Son Kontrol sayfasına geçilir. «Geri» ile bagaj sayfasına dönülür.",
+  "lastcheck": "Kullanıcı Son Kontrol sayfasında. Rezervasyon özeti görünür. İsteğe bağlı: «799 ₺ farkla ücretsiz iptal hakkı ekle» kutusu; işaretlenirse toplama 799 ₺ eklenir ve bilet ücretsiz iptal edilebilir. Onaylıysanız «Ödemeye Geç (Mock-up)» butonuna tıklayın. «Geri» ile özel ihtiyaçlar sayfasına dönülür.",
+  "payment": "Kullanıcı Ödeme sayfasında. Özeti kontrol edin; «Ödeme yap» butonuna tıklayınca (mock) işlem tamamlanır ve bilet onay sayfasına gidilir. «Geri» ile son kontrole dönülür.",
+  "confirmation": "Kullanıcı Bilet Onayı sayfasında. Rezervasyon tamamlandı. «Yeni Rezervasyon» ile ana sayfaya dönülür. Biletler «Biletlerim» menüsünden görüntülenir.",
+  "my-tickets": "Kullanıcı Biletlerim sayfasında. Kayıtlı biletler listelenir. Süresi geçmemiş biletlerde «Biletimi düzenle» ile bagaj, koltuk ve özel ihtiyaç güncellenebilir. Yeni bilet için üst menüden «Bilet Al»a tıklanır."
 }

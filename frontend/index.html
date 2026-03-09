@@ -123,18 +123,18 @@
           <label>Bagaj</label>
           <select id="baggage-option" class="input">
             <option value="cabin">Sadece kabin bagajı (8 kg)</option>
-            <option value="15kg">+ 15 kg kayıtlı bagaj</option>
-            <option value="20kg">+ 20 kg kayıtlı bagaj</option>
-            <option value="25kg">+ 25 kg kayıtlı bagaj</option>
+            <option value="15kg">+ 15 kg kayıtlı bagaj (+285 ₺)</option>
+            <option value="20kg">+ 20 kg kayıtlı bagaj (+465 ₺)</option>
+            <option value="25kg">+ 25 kg kayıtlı bagaj (+605 ₺)</option>
           </select>
         </div>
         <div class="field">
           <label>Koltuk tercihi</label>
           <select id="seat-preference" class="input">
             <option value="">Seçmeyebilirsiniz</option>
-            <option value="window">Pencere</option>
-            <option value="aisle">Koridor</option>
-            <option value="middle">Orta</option>
+            <option value="window">Pencere (+355 ₺)</option>
+            <option value="aisle">Koridor (+355 ₺)</option>
+            <option value="middle">Orta (+75 ₺)</option>
           </select>
         </div>
       </div>
@@ -144,18 +144,18 @@
           <label>Bagaj</label>
           <select id="baggage-option-return" class="input">
             <option value="cabin">Sadece kabin bagajı (8 kg)</option>
-            <option value="15kg">+ 15 kg kayıtlı bagaj</option>
-            <option value="20kg">+ 20 kg kayıtlı bagaj</option>
-            <option value="25kg">+ 25 kg kayıtlı bagaj</option>
+            <option value="15kg">+ 15 kg kayıtlı bagaj (+285 ₺)</option>
+            <option value="20kg">+ 20 kg kayıtlı bagaj (+465 ₺)</option>
+            <option value="25kg">+ 25 kg kayıtlı bagaj (+605 ₺)</option>
           </select>
         </div>
         <div class="field">
           <label>Koltuk tercihi</label>
           <select id="seat-preference-return" class="input">
             <option value="">Seçmeyebilirsiniz</option>
-            <option value="window">Pencere</option>
-            <option value="aisle">Koridor</option>
-            <option value="middle">Orta</option>
+            <option value="window">Pencere (+355 ₺)</option>
+            <option value="aisle">Koridor (+355 ₺)</option>
+            <option value="middle">Orta (+75 ₺)</option>
           </select>
         </div>
       </div>
@@ -182,6 +182,12 @@
     <section class="page-section hidden" id="page-lastcheck" data-page="lastcheck">
       <h2>Son Kontrol</h2>
       <div class="summary-box" id="lastcheck-summary"></div>
+      <div class="free-cancellation-option" id="free-cancellation-wrap">
+        <label class="free-cancellation-label">
+          <input type="checkbox" id="free-cancellation-checkbox" />
+          <span>799 ₺ farkla ücretsiz iptal hakkı ekle</span>
+        </label>
+      </div>
       <div class="page-actions">
         <button type="button" class="btn-secondary" id="btn-back-to-special">Geri</button>
         <button type="button" class="btn-primary" id="btn-to-payment">Ödemeye Geç (Mock-up)</button>
