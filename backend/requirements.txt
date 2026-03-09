@@ -1,8 +1,9 @@
-# Python 3.11+ önerilir. Render için runtime.txt kullanılır.
+# Python 3.11+ önerilir. Render'da PYTHON_VERSION=3.11.7 kullanın.
 fastapi==0.115.6
 uvicorn[standard]==0.32.1
 slowapi==0.1.9
 chromadb==0.5.23
+tokenizers==0.19.1  # chromadb için; wheel mevcut, Render'da Rust derlemesi gerekmez
 sentence-transformers==3.3.1
 python-multipart==0.0.18
 pydantic-settings==2.6.1
