@@ -9,6 +9,8 @@ _ROOT = Path(__file__).resolve().parent.parent
 class Settings(BaseSettings):
     openai_api_key: str = ""
     gemini_api_key: str = ""
+    use_openai_embeddings: bool = False   # True: OpenAI API ile embed (RAM tasarrufu)
+    use_gemini_embeddings: bool = False   # True: Gemini API ile embed (sadece GEMINI_API_KEY yeterli, RAM tasarrufu)
     data_dir: str = "data"
     chroma_persist_dir: str = ".chroma"
     chunk_size: int = 800

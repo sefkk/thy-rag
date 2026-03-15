@@ -66,6 +66,8 @@ PYTHONPATH=backend python backend/embed.py
 # backend/.chroma güncellendi; git add backend/.chroma && git commit && git push
 ```
 
+**RAM azaltmak (Render):** Sadece **GEMINI_API_KEY** varsa: `USE_GEMINI_EMBEDDINGS=true` kullanın. Hem chat hem embedding Gemini ile gider, sentence-transformers yüklenmez. OPENAI key’iniz varsa: `USE_OPENAI_EMBEDDINGS=true` da kullanılabilir. Hangisini açarsanız açın, embedding boyutu değiştiği için indeksi **yeniden oluşturmanız gerekir**: yerelde `.env` veya ortamda ilgili env’leri set edip `PYTHONPATH=backend python backend/embed.py` çalıştırın; ardından `backend/.chroma`'yı commit + push edin. Render’da bellek kullanımı belirgin düşer.
+
 ## Deploy (Render)
 
 Proje **Render**’da tek servis olarak çalışacak şekilde ayarlıdır: API + statik frontend aynı URL’de sunulur. Repoyu bağlayıp ortam değişkenlerini eklemeniz yeterlidir.
@@ -113,8 +115,10 @@ Varsayılan kurulum **tek sunucu**dır: Render’da tek Web Service hem API’yi
 
 | Değişken | Açıklama |
 |----------|----------|
-| `OPENAI_API_KEY` | OpenAI chat API anahtarı (OpenAI kullanılacaksa). |
+| `OPENAI_API_KEY` | OpenAI chat API anahtarı (OpenAI kullanılacaksa). **RAM azaltmak için:** `USE_OPENAI_EMBEDDINGS=true` ile RAG embedding’leri de OpenAI üzerinden gider; bu durumda zorunlu. |
 | `GEMINI_API_KEY` | Google Gemini API anahtarı (Gemini kullanılacaksa). İkisi varsa Gemini öncelikli. |
+| `USE_GEMINI_EMBEDDINGS` | `true` ise RAG embedding'leri **Gemini API** ile; sadece **GEMINI_API_KEY** yeterli, RAM tasarrufu. Sadece Gemini key'in varsa bunu aç. |
+| `USE_OPENAI_EMBEDDINGS` | `true` ise RAG embedding’leri OpenAI API ile yapılır; yerel sentence-transformers yüklenmez, **~150–250 MB RAM tasarrufu**. Render’da memory limit aşıyorsan aç. Açtıktan sonra indeksi yeniden oluşturman gerekir (aşağıya bakın). |
 | `DATA_DIR` | RAG veri klasörü (proje köküne göre). Varsayılan: `data`. |
 | `PORT` | Sunucu portu (Render vb. ortamlarda otomatik atanır). |
 | `RATE_LIMIT_CHAT` | Chat isteği limiti (örn. `15/minute`). Varsayılan: `15/minute`. |

@@ -97,7 +97,54 @@ def load_and_chunk_documents(data_dir: Path, chunk_size: int, chunk_overlap: int
     return all_chunks
 
 
+class _GeminiEmbeddingFunction:
+    """Chroma uyumlu embedding; sadece GEMINI_API_KEY ile google-genai kullanır (Chroma sürümüne bağlı değil)."""
+
+    def __init__(self, api_key: str, model_name: str = "gemini-embedding-001"):
+        self._api_key = api_key
+        self._model = model_name
+        self._client = None
+
+    def _get_client(self):
+        if self._client is None:
+            from google import genai
+            self._client = genai.Client(api_key=self._api_key)
+        return self._client
+
+    def _embed_one(self, client, text: str) -> list[float]:
+        result = client.models.embed_content(model=self._model, contents=text)
+        if hasattr(result, "embeddings") and result.embeddings:
+            e = result.embeddings[0]
+            return getattr(e, "values", e) if not isinstance(e, list) else e
+        if hasattr(result, "embedding"):
+            e = result.embedding
+            return getattr(e, "values", e) if not isinstance(e, list) else e
+        return []
+
+    def __call__(self, input: list) -> list[list[float]]:
+        if not input:
+            return []
+        texts = input if isinstance(input, list) else [input]
+        client = self._get_client()
+        out = []
+        for text in texts:
+            out.append(self._embed_one(client, text))
+        return out
+
+
 def get_embedding_fn():
+    from config import settings
+    gemini_key = settings.gemini_api_key or os.environ.get("GEMINI_API_KEY")
+    openai_key = settings.openai_api_key or os.environ.get("OPENAI_API_KEY")
+    # USE_GEMINI_EMBEDDINGS=1: sadece GEMINI_API_KEY ile; sentence-transformers yüklenmez, RAM tasarrufu
+    if getattr(settings, "use_gemini_embeddings", False) and gemini_key:
+        return _GeminiEmbeddingFunction(api_key=gemini_key, model_name="gemini-embedding-001")
+    # USE_OPENAI_EMBEDDINGS=1: OPENAI_API_KEY gerekir
+    if getattr(settings, "use_openai_embeddings", False) and openai_key:
+        return embedding_functions.OpenAIEmbeddingFunction(
+            api_key=openai_key,
+            model_name="text-embedding-3-small",
+        )
     return embedding_functions.SentenceTransformerEmbeddingFunction(
         model_name="all-MiniLM-L6-v2"
     )
