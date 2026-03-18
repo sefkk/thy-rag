@@ -14,7 +14,7 @@ cd thy-rag
 ## Yapı
 
 - **frontend/** – HTML, CSS, JS (THY mock-up + sağ alt yardım chat’i)
-- **frontend/data/** – Uçuş ve havalimanı listeleri (flights.json, airports.json). Uçuş tarihleri 9–27 Mart 2026 aralığındadır.
+- **frontend/data/** – Uçuş ve havalimanı listeleri (flights.json, airports.json). Uçuş tarihleri 19 Mart – 19 Nisan 2026 aralığındadır.
 - **backend/** – FastAPI + RAG (Chroma, sentence-transformers, OpenAI)
 - **data/** – RAG için statik veri: THY SSS, bagaj, check-in, sayfa rehberi (Markdown)
 
@@ -141,7 +141,7 @@ thy-rag/
 │   ├── js/
 │   │   ├── config.js   # API_BASE (deploy için)
 │   │   └── app.js
-│   └── data/           # flights.json, airports.json (9–27 Mart 2026)
+│   └── data/           # flights.json, airports.json (19 Mart – 19 Nisan 2026)
 ├── backend/
 │   ├── app.py          # FastAPI, /api/chat, /api/health, statik serve
 │   ├── rag.py          # RAG pipeline (Chroma, sentence-transformers)

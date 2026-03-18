@@ -250,6 +250,24 @@ input[type="date"].input {
   width: 100%;
   padding: 0.65rem 0.85rem;
   box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: var(--thy-white);
+  color: var(--thy-gray);
+  font-size: 1rem;
+}
+
+/* Mobilde tarih alanı: font 16px (iOS zoom önleme), stil görünsün diye açık renkler */
+@media (max-width: 768px) {
+  input[type="date"].input {
+    font-size: 16px;
+    min-height: 44px;
+    padding: 0.75rem 0.85rem;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    color: #333;
+  }
 }
 
 .page-actions {
@@ -426,6 +444,10 @@ label .required {
 }
 
 .baggage-seat-return-wrap.hidden {
+  display: none !important;
+}
+
+.ticket-edit-return-wrap.hidden {
   display: none !important;
 }
 

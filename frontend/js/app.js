@@ -800,6 +800,18 @@
     });
   }
 
+  var FLIGHT_DATE_MIN = "2026-03-19";
+  var FLIGHT_DATE_MAX = "2026-04-19";
+
+  function getDefaultDepartureDate() {
+    var today = new Date();
+    var y = today.getFullYear(), m = today.getMonth() + 1, d = today.getDate();
+    var iso = y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d);
+    if (iso < FLIGHT_DATE_MIN) return FLIGHT_DATE_MIN;
+    if (iso > FLIGHT_DATE_MAX) return FLIGHT_DATE_MAX;
+    return iso;
+  }
+
   function initBookingFlow() {
     var fieldReturn = document.getElementById("field-return");
     document.querySelectorAll(".tabs .tab").forEach(function (tab) {
@@ -814,11 +826,21 @@
     var depInput = document.getElementById("input-departure-date");
     var retInput = document.getElementById("input-return-date");
     if (depInput && retInput) {
+      depInput.min = FLIGHT_DATE_MIN;
+      depInput.max = FLIGHT_DATE_MAX;
+      if (!depInput.value) {
+        depInput.value = getDefaultDepartureDate();
+      }
+      retInput.min = depInput.value || FLIGHT_DATE_MIN;
+      retInput.max = FLIGHT_DATE_MAX;
+      if (!retInput.value || retInput.value < retInput.min) {
+        retInput.value = retInput.min;
+      }
+      if (retInput.value > FLIGHT_DATE_MAX) retInput.value = FLIGHT_DATE_MAX;
       depInput.addEventListener("change", function () {
         if (retInput.value && retInput.value < depInput.value) retInput.value = depInput.value;
         retInput.min = depInput.value;
       });
-      retInput.min = depInput.value || "2026-03-09";
     }
 
     document.getElementById("btn-search").addEventListener("click", function () {

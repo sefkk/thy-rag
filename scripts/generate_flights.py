@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""9-27 Mart 2026 (8 Mart yok): IST-ESB 160, ESB-IST 120, IST-AMS 160, AMS-IST 140, ESB-AMS 10, AMS-ESB 10. Toplam 600."""
+"""19 Mart - 19 Nisan 2026: IST-ESB 160, ESB-IST 120, IST-AMS 160, AMS-IST 140, ESB-AMS 10, AMS-ESB 10. Toplam 600."""
 import json
 import random
 from datetime import datetime, timedelta
@@ -24,16 +24,16 @@ SPECS = [
 ]
 
 def main():
-    start = datetime(2026, 3, 9)
-    end = datetime(2026, 3, 27)
+    start = datetime(2026, 3, 19)
+    end = datetime(2026, 4, 19)
     all_dates = []
     d = start
     while d <= end:
         all_dates.append(d.strftime("%Y-%m-%d"))
         d += timedelta(days=1)
-    # Her 2 günde bir: ESB-AMS 9,11,...,27; AMS-ESB 10,12,...,26 (+1 gün gerekirse)
-    even_dates = [all_dates[i] for i in range(0, len(all_dates), 2)]   # 9,11,...,27
-    odd_dates = [all_dates[i] for i in range(1, len(all_dates), 2)]    # 10,12,...,26
+    # Her 2 günde bir: ESB-AMS / AMS-ESB
+    even_dates = [all_dates[i] for i in range(0, len(all_dates), 2)]
+    odd_dates = [all_dates[i] for i in range(1, len(all_dates), 2)]
 
     flight_id = 2000
     all_flights = []
