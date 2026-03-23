@@ -45,6 +45,7 @@
       <nav class="nav">
         <a href="#" data-page="home" class="nav-link active">Bilet Al</a>
         <a href="#" data-page="my-tickets" class="nav-link">Biletlerim</a>
+        <a href="#" data-page="knowledge-bank" class="nav-link">Bilgi bankası</a>
         <button type="button" class="nav-link nav-link-author" id="nav-author" aria-label="Orkun Şefik – Benimle ilgili bilgiler">Orkun Şefik</button>
       </nav>
     </div>
@@ -93,6 +94,19 @@
         </div>
       </div>
       <button type="button" class="btn-primary" id="btn-search">Uçuş Ara</button>
+    </section>
+
+    <section class="page-section hidden" id="page-knowledge-bank" data-page="knowledge-bank">
+      <h2>Bilgi bankası</h2>
+      <p class="kb-intro">Aşağıdaki konulardan birine tıklayarak ilgili bilgi metnini görüntüleyebilirsiniz.</p>
+      <div id="kb-list-wrap" class="kb-list-wrap">
+        <ul class="kb-link-list" id="kb-link-list" role="list"></ul>
+      </div>
+      <div id="kb-detail-wrap" class="kb-detail-wrap hidden">
+        <button type="button" class="btn-secondary kb-back-btn" id="kb-back">← Konu listesine dön</button>
+        <h3 id="kb-detail-title" class="kb-detail-title"></h3>
+        <div class="kb-detail-body" id="kb-detail-body"></div>
+      </div>
     </section>
 
     <section class="page-section hidden" id="page-flight-list" data-page="flight-list">

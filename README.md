@@ -66,6 +66,8 @@ PYTHONPATH=backend python backend/embed.py
 # backend/.chroma güncellendi; git add backend/.chroma && git commit && git push
 ```
 
+**Bilgi bankası:** Sayfadaki metinler önce `frontend/data/knowledge-bundle.json` dosyasından yüklenir (Netlify’da backend olmadan da çalışır). `data/` içindeki `.txt` dosyalarını değiştirdiyseniz: `python3 scripts/build_knowledge_bundle.py` çalıştırıp `knowledge-bundle.json`’ı commit edin. İsteğe bağlı olarak API (`GET /api/knowledge/{slug}`) yedek kaynaktır.
+
 **RAM azaltmak (Render):** Sadece **GEMINI_API_KEY** varsa: `USE_GEMINI_EMBEDDINGS=true` kullanın. Hem chat hem embedding Gemini ile gider, sentence-transformers yüklenmez. OPENAI key’iniz varsa: `USE_OPENAI_EMBEDDINGS=true` da kullanılabilir. Hangisini açarsanız açın, embedding boyutu değiştiği için indeksi **yeniden oluşturmanız gerekir**: yerelde `.env` veya ortamda ilgili env’leri set edip `PYTHONPATH=backend python backend/embed.py` çalıştırın; ardından `backend/.chroma`'yı commit + push edin. Render’da bellek kullanımı belirgin düşer.
 
 ## Deploy (Render)

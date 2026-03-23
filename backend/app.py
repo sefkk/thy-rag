@@ -7,7 +7,27 @@ import os
 import warnings
 from contextlib import asynccontextmanager
 from pathlib import Path
-from typing import Optional
+from typing import List, Optional
+
+# Bilgi bankası: yalnızca bu slug'lar data/ altından okunur (path traversal yok)
+_KNOWLEDGE_FILES: dict[str, str] = {
+    "bagaj": "bagaj_rehberi.txt",
+    "bilet-alma-sureci": "bilet-alma-sureci.txt",
+    "bilet-nasil-alinir": "bilet-nasil-alinir.txt",
+    "biletleme-kurallari": "biletleme_kurallari.txt",
+    "iade-degisiklik": "iade-ve-degisiklik.txt",
+    "ucus-oncesi": "ucus_oncesi_islemler.txt",
+    "miles-smiles": "miles_and_smiles.txt",
+    "yolcu-haklari": "yolcu_haklari.txt",
+}
+
+
+def _rag_data_dir() -> Path:
+    d = Path(settings.data_dir).resolve()
+    if not d.is_absolute():
+        d = Path(__file__).resolve().parent.parent / settings.data_dir
+    return d
+
 
 os.environ["ANONYMIZED_TELEMETRY"] = "False"
 for _name in ("chromadb", "chromadb.telemetry", "chromadb.telemetry.posthog"):
@@ -191,6 +211,59 @@ def chat(request: Request, req: ChatRequest):
 @api.get("/health")
 def health():
     return {"status": "ok"}
+
+
+class KnowledgeItem(BaseModel):
+    slug: str
+    title: str
+
+
+class KnowledgeContent(BaseModel):
+    slug: str
+    title: str
+    content: str
+
+
+@api.get("/knowledge", response_model=List[KnowledgeItem])
+def knowledge_list():
+    meta_path = _rag_data_dir() / "metadata.json"
+    meta = {}
+    if meta_path.exists():
+        try:
+            meta = json.loads(meta_path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            pass
+    out = []
+    for slug, fname in _KNOWLEDGE_FILES.items():
+        title = fname.replace(".txt", "").replace("_", " ").replace("-", " ")
+        if fname in meta and isinstance(meta[fname], dict):
+            title = meta[fname].get("source_title") or title
+        out.append(KnowledgeItem(slug=slug, title=title))
+    return out
+
+
+@api.get("/knowledge/{slug}", response_model=KnowledgeContent)
+def knowledge_get(slug: str):
+    fname = _KNOWLEDGE_FILES.get(slug)
+    if not fname:
+        raise HTTPException(status_code=404, detail="Bilinmeyen bilgi konusu")
+    path = _rag_data_dir() / fname
+    if not path.is_file():
+        raise HTTPException(status_code=404, detail="Dosya bulunamadı")
+    try:
+        content = path.read_text(encoding="utf-8")
+    except OSError:
+        raise HTTPException(status_code=500, detail="Dosya okunamadı")
+    meta_path = _rag_data_dir() / "metadata.json"
+    title = fname.replace(".txt", "").replace("_", " ")
+    if meta_path.exists():
+        try:
+            m = json.loads(meta_path.read_text(encoding="utf-8"))
+            if fname in m and isinstance(m[fname], dict):
+                title = m[fname].get("source_title") or title
+        except (json.JSONDecodeError, OSError):
+            pass
+    return KnowledgeContent(slug=slug, title=title, content=content)
 
 
 app.mount("/api", api)

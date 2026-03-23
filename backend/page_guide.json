@@ -7,5 +7,6 @@
   "lastcheck": "Kullanıcı Son Kontrol sayfasında. Rezervasyon özeti görünür. İsteğe bağlı: «799 ₺ farkla ücretsiz iptal hakkı ekle» kutusu; işaretlenirse toplama 799 ₺ eklenir ve bilet ücretsiz iptal edilebilir. Onaylıysanız «Ödemeye Geç (Mock-up)» butonuna tıklayın. «Geri» ile özel ihtiyaçlar sayfasına dönülür.",
   "payment": "Kullanıcı Ödeme sayfasında. Özeti kontrol edin; «Ödeme yap» butonuna tıklayınca (mock) işlem tamamlanır ve bilet onay sayfasına gidilir. «Geri» ile son kontrole dönülür.",
   "confirmation": "Kullanıcı Bilet Onayı sayfasında. Rezervasyon tamamlandı. «Yeni Rezervasyon» ile ana sayfaya dönülür. Biletler «Biletlerim» menüsünden görüntülenir.",
-  "my-tickets": "Kullanıcı Biletlerim sayfasında. Kayıtlı biletler listelenir. Süresi geçmemiş biletlerde «Biletimi düzenle» ile bagaj, koltuk ve özel ihtiyaç güncellenebilir. Yeni bilet için üst menüden «Bilet Al»a tıklanır."
+  "my-tickets": "Kullanıcı Biletlerim sayfasında. Kayıtlı biletler listelenir. Süresi geçmemiş biletlerde «Biletimi düzenle» ile bagaj, koltuk ve özel ihtiyaç güncellenebilir. Yeni bilet için üst menüden «Bilet Al»a tıklanır.",
+  "knowledge-bank": "Kullanıcı Bilgi bankası sayfasında. Konu listesinden bir bağlantıya tıklayınca ilgili metin (bagaj, bilet süreci, iade vb.) açılır. «Konu listesine dön» ile tekrar listeye dönülür. Üst menüden «Bilet Al» veya «Biletlerim» ile diğer bölümlere geçilebilir."
 }

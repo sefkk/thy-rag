@@ -219,7 +219,7 @@
     var hero = document.getElementById("hero-booking");
     var card = document.getElementById("booking-card");
 
-    document.querySelectorAll(".nav-link").forEach(function (a) {
+    document.querySelectorAll(".nav-link[data-page]").forEach(function (a) {
       a.classList.toggle("active", (a.getAttribute("data-page") || "") === currentPage);
     });
 
@@ -256,6 +256,11 @@
     if (section) {
       section.classList.remove("hidden");
     }
+    if (currentPage === "knowledge-bank") {
+      resetKnowledgeBankView();
+    }
+    var sid = "page-" + currentPage;
+    updateBookingTotalBar(BOOKING_SECTIONS_WITH_TOTAL.indexOf(sid) >= 0 ? sid : null);
   }
 
   function showBookingCard() {
@@ -737,8 +742,95 @@
     showSection("page-confirmation");
   }
 
+  var KNOWLEDGE_TOPICS = [
+    { slug: "bagaj", label: "Bagaj hakları ile ilgili bilgi almak için tıklayın" },
+    { slug: "bilet-alma-sureci", label: "Bilet alma süreci ile ilgili bilgi almak için tıklayın" },
+    { slug: "bilet-nasil-alinir", label: "Bilet nasıl alınır – bilgi almak için tıklayın" },
+    { slug: "biletleme-kurallari", label: "Biletleme ve ücret kuralları ile ilgili bilgi almak için tıklayın" },
+    { slug: "iade-degisiklik", label: "İade ve değişiklik kuralları ile ilgili bilgi almak için tıklayın" },
+    { slug: "ucus-oncesi", label: "Uçuş öncesi işlemler (check-in vb.) ile ilgili bilgi almak için tıklayın" },
+    { slug: "miles-smiles", label: "Miles&Smiles ile ilgili bilgi almak için tıklayın" },
+    { slug: "yolcu-haklari", label: "Yolcu hakları ile ilgili bilgi almak için tıklayın" }
+  ];
+
+  function resetKnowledgeBankView() {
+    var listWrap = document.getElementById("kb-list-wrap");
+    var detailWrap = document.getElementById("kb-detail-wrap");
+    if (listWrap) listWrap.classList.remove("hidden");
+    if (detailWrap) detailWrap.classList.add("hidden");
+  }
+
+  function initKnowledgeBank() {
+    var ul = document.getElementById("kb-link-list");
+    var backBtn = document.getElementById("kb-back");
+    if (!ul) return;
+    ul.innerHTML = "";
+    KNOWLEDGE_TOPICS.forEach(function (topic) {
+      var li = document.createElement("li");
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "kb-topic-link";
+      btn.setAttribute("data-slug", topic.slug);
+      btn.textContent = topic.label;
+      btn.addEventListener("click", function () {
+        openKnowledgeArticle(topic.slug);
+      });
+      li.appendChild(btn);
+      ul.appendChild(li);
+    });
+    if (backBtn) {
+      backBtn.addEventListener("click", function () {
+        resetKnowledgeBankView();
+      });
+    }
+  }
+
+  function openKnowledgeArticle(slug) {
+    var listWrap = document.getElementById("kb-list-wrap");
+    var detailWrap = document.getElementById("kb-detail-wrap");
+    var titleEl = document.getElementById("kb-detail-title");
+    var bodyEl = document.getElementById("kb-detail-body");
+    if (!listWrap || !detailWrap || !titleEl || !bodyEl) return;
+    listWrap.classList.add("hidden");
+    detailWrap.classList.remove("hidden");
+    titleEl.textContent = "Yükleniyor…";
+    bodyEl.textContent = "";
+    function applyEntry(data) {
+      titleEl.textContent = (data && data.title) || slug;
+      bodyEl.textContent = (data && data.content) || "";
+    }
+    function showFail() {
+      titleEl.textContent = "İçerik yüklenemedi";
+      bodyEl.textContent = "Metin açılamadı. Sayfayı yenileyip tekrar deneyin; data/ güncellendiyse projede scripts/build_knowledge_bundle.py çalıştırılıp yeniden deploy edilmelidir.";
+    }
+    fetch("/data/knowledge-bundle.json")
+      .then(function (r) {
+        return r.ok ? r.json() : null;
+      })
+      .catch(function () {
+        return null;
+      })
+      .then(function (bundle) {
+        if (bundle && bundle[slug]) {
+          applyEntry(bundle[slug]);
+          return true;
+        }
+        return false;
+      })
+      .then(function (usedStatic) {
+        if (usedStatic) return;
+        return fetch(apiUrl("/api/knowledge/" + encodeURIComponent(slug)))
+          .then(function (r) {
+            if (!r.ok) throw new Error();
+            return r.json();
+          })
+          .then(applyEntry);
+      })
+      .catch(showFail);
+  }
+
   function initNav() {
-    document.querySelectorAll(".nav-link").forEach(function (a) {
+    document.querySelectorAll(".nav-link[data-page]").forEach(function (a) {
       a.addEventListener("click", function (e) {
         e.preventDefault();
         setPage(a.getAttribute("data-page") || "home");
@@ -1205,6 +1297,7 @@
   loadFlights();
   bindFlightSelect();
   initNav();
+  initKnowledgeBank();
   initDisclaimer();
   initAuthorPopup();
   initBookingFlow();
